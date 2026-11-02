@@ -1,6 +1,10 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hinoki Village Treasure Hunt</title><style>
 :root{font-family:system-ui,'Arial',sans-serif;color:#24352b;background:#f3f6eb}*{box-sizing:border-box}body{margin:0}header{background:#174d40;color:white;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}h1{font-size:clamp(21px,3vw,32px);margin:0}.subtitle{opacity:.85;font-size:14px}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}.pill{background:#fff;color:#174d40;border-radius:30px;padding:9px 15px;font-weight:800}.wrap{max-width:1450px;margin:auto;padding:16px}.intro{background:white;padding:14px 18px;border-radius:15px;margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.intro input{padding:10px;border:2px solid #cad9cd;border-radius:9px;min-width:180px;flex:1}.primary{background:#edac2d;color:#24352b;border:0;border-radius:11px;padding:12px 18px;font-weight:800}.mapbox{position:relative;width:100%;background:#fff;border:4px solid #e6d7b3;border-radius:16px;overflow:hidden;box-shadow:0 8px 22px #213b2617}.mapbox img{display:block;width:100%;height:auto}.spot{position:absolute;transform:translate(-50%,-50%);border:3px solid white;background:#164e43;color:white;border-radius:18px;box-shadow:0 4px 12px #0006;min-width:90px;max-width:150px;padding:7px;font-size:clamp(10px,1.15vw,15px);font-weight:800;line-height:1.15;text-align:center}.spot .emoji{font-size:clamp(19px,2vw,28px);display:block}.spot.done{background:#43834d}.spot:focus-visible{outline:4px solid #ffbf36}.legend{margin:12px 0;color:#475d50;font-size:13px}.progress{height:13px;border-radius:20px;background:#dce8d8;overflow:hidden;flex:1;min-width:120px}.progress>div{height:100%;background:#e5a832;transition:width .3s}.bar{display:flex;gap:15px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.panel{background:white;padding:18px;border-radius:18px;box-shadow:0 9px 30px #0002}.overlay{position:fixed;inset:0;background:#112c26c9;display:flex;justify-content:center;align-items:center;padding:15px;z-index:10}.hidden{display:none!important}.dialog{max-width:650px;width:100%;max-height:92vh;overflow:auto}.dialog h2{margin-top:0}.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}.choice{border:2px solid #c8d8cb;background:#f7faf5;padding:15px;text-align:left;border-radius:12px;min-height:70px;font-weight:650}.choice:hover:not(:disabled){border-color:#e4a327;background:#fff8e6}.choice.correct{background:#d4f2dc;border-color:#3e9956}.choice.wrong{background:#ffe0df;border-color:#d8574c}.feedback{font-weight:750;min-height:25px}.muted{color:#52695b}.bottom{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.small{font-size:13px}.results{text-align:center}.results h2{font-size:32px}.scorebig{font-size:60px;font-weight:900;color:#1e6951}.question{font-size:clamp(20px,3vw,27px);font-weight:800}.areaTag{display:inline-block;background:#e3f0df;padding:7px 12px;border-radius:20px;font-weight:800}.print{background:#195849;color:white;border:0;border-radius:10px;padding:12px 16px;font-weight:750}.mapnote{font-size:13px;background:#fff5d9;padding:10px 14px;border-radius:10px;margin:10px 0}@media(max-width:650px){.spot{min-width:56px;max-width:95px;padding:4px 2px;border-width:2px;font-size:9px;border-radius:10px}.spot .emoji{font-size:17px}.choices{grid-template-columns:1fr}.wrap{padding:8px}.intro{padding:12px}}@media print{header,.intro,.mapbox,.bar,.legend,.mapnote,.print{display:none!important}.overlay{position:static;background:white;padding:0}.dialog{max-width:100%;box-shadow:none}.results{display:block!important}}
-</style></head><body><header><div><h1>🗺️ Hinoki Village Treasure Hunt</h1><div class="subtitle">Explore • Answer • Collect Treasure!</div></div><div class="pill" id="score">⭐ 0 / 100</div></header><main class="wrap"><div class="intro"><label for="student"><strong>Explorer's name:</strong></label><input id="student" maxlength="50" placeholder="Type your name" autocomplete="off"><button class="primary" id="start">Start Adventure</button><span class="small muted" id="welcome">Enter your name to begin.</span></div><div class="bar"><strong id="counter">0 / 20 questions completed</strong><div class="progress"><div id="fill" style="width:0%"></div></div><strong id="chests">🎁 0 / 6 areas explored</strong></div><div class="mapbox"><img src="map.png" alt="Illustrated Hinoki Village map with numbered buildings and streets"><button class="spot" style="left:22%;top:43%" data-area="bazaar"><span class="emoji">🛍️</span>Cultural Bazaar</button><button class="spot" style="left:42%;top:33%" data-area="gallery"><span class="emoji">🖼️</span>Gallery</button><button class="spot" style="left:66%;top:22%" data-area="time"><span class="emoji">⏳</span>Time Tunnel</button><button class="spot" style="left:68%;top:46%" data-area="snack"><span class="emoji">🧋</span>Food & Drinks</button><button class="spot" style="left:32%;top:61%" data-area="souvenir"><span class="emoji">🎁</span>Souvenirs</button><button class="spot" style="left:63%;top:78%" data-area="creative"><span class="emoji">🎨</span>Life & Creative</button></div><div class="mapnote">📍 Treasure markers are game locations placed approximately on the supplied map, not verified official boundaries. Tap any marker to play its questions.</div><div class="legend">🟢 Green = area completed · 🔵 Dark green = questions remaining · Answer each question once for points. Incorrect answers earn 0 points; practice feedback appears afterward.</div></main><div class="overlay hidden" id="overlay"><div class="dialog panel" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div id="game"></div></div></div><script>
+
+button:focus-visible,input:focus-visible{outline:3px solid #bd7900;outline-offset:3px}
+@media(max-width:650px){.mapbox{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:10px}.mapbox img{grid-column:1/-1}.spot{position:static;transform:none;min-width:0;max-width:none;min-height:64px;font-size:14px;padding:10px}.spot .emoji{font-size:24px}.intro input{min-width:0;width:100%}.pill{font-size:14px}.scorebig{font-size:48px}}
+@media print{body>*:not(#overlay){display:none!important}#restart,#certificateBack{display:none!important}.dialog{max-height:none;overflow:visible}}
+</style></head><body><header><div><h1>🗺️ Hinoki Village Treasure Hunt</h1><div class="subtitle">Explore • Answer • Collect Treasure!</div></div><div class="pill" id="score">⭐ 0 / 100</div></header><main class="wrap"><div class="intro"><label for="student"><strong>Explorer's name:</strong></label><input id="student" maxlength="50" placeholder="Type your name" autocomplete="off"><button class="primary" id="start">Start Adventure</button><span class="small muted" id="welcome">Enter your name to begin.</span></div><div class="bar"><strong id="counter">0 / 20 questions completed</strong><div class="progress" role="progressbar" aria-label="Questions completed" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0"><div id="fill" style="width:0%"></div></div><strong id="chests">🎁 0 / 6 areas explored</strong><button class="print hidden" id="viewResult">🏆 View certificate</button><button class="print hidden" id="reset">Start over</button></div><div class="mapbox"><img src="G6-Week%206%20Hinoki%20Village.pptx.png" alt="Illustrated Hinoki Village map with numbered buildings and streets"><button class="spot" style="left:22%;top:43%" data-area="bazaar"><span class="emoji">🛍️</span>Cultural Bazaar</button><button class="spot" style="left:42%;top:33%" data-area="gallery"><span class="emoji">🖼️</span>Gallery</button><button class="spot" style="left:66%;top:22%" data-area="time"><span class="emoji">⏳</span>Time Tunnel</button><button class="spot" style="left:68%;top:46%" data-area="snack"><span class="emoji">🧋</span>Food & Drinks</button><button class="spot" style="left:32%;top:61%" data-area="souvenir"><span class="emoji">🎁</span>Souvenirs</button><button class="spot" style="left:63%;top:78%" data-area="creative"><span class="emoji">🎨</span>Life & Creative</button></div><div class="mapnote">📍 Treasure markers are game locations placed approximately on the supplied map, not verified official boundaries. Tap any marker to play its questions.</div><div class="legend">🟢 Green = area completed · 🔵 Dark green = questions remaining · Answer each question once for points. Incorrect answers earn 0 points; practice feedback appears afterward.</div></main><div class="overlay hidden" id="overlay"><div class="dialog panel" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div id="game"></div></div></div><script>
 // TEACHER EDITING GUIDE: Each question has four answers. 'correct' is the zero-based index: 0=A, 1=B, 2=C, 3=D.
 // There are 20 questions total, each worth 5 points. Keep the total at 20 for a 100-point game.
 const areas={
@@ -31,6 +35,146 @@ const areas={
  {q:'Choose the correct sentence.',a:['You can makes crafts here.','You can making crafts here.','You can make crafts here.','You can made crafts here.'],correct:2,why:'Use “make” after “can”.'},
  {q:'Which sentence is a good closing for a Hinoki Village presentation?',a:['Hinoki Village never open!','You should not visit here!','No one can enjoy this place!','Come and visit Hinoki Village!'],correct:3,why:'It is a friendly invitation to visitors.'}]}
 };
-const all=Object.values(areas).reduce((n,a)=>n+a.questions.length,0);if(all!==20)alert('Teacher notice: This game currently has '+all+' questions. Set it to 20 for a 100-point maximum.');
-let started=false,student='',active=null,answered={},score=0;const $=id=>document.getElementById(id),overlay=$('overlay'),game=$('game');const done=id=>areas[id].questions.every((_,i)=>answered[id+':'+i]!==undefined);const completed=()=>Object.keys(answered).length;function update(){ $('score').textContent='⭐ '+score+' / 100';$('counter').textContent=completed()+' / 20 questions completed';$('fill').style.width=(completed()/20*100)+'%';$('chests').textContent='🎁 '+Object.keys(areas).filter(done).length+' / 6 areas explored';document.querySelectorAll('.spot').forEach(b=>{b.classList.toggle('done',done(b.dataset.area));b.setAttribute('aria-label',areas[b.dataset.area].name+(done(b.dataset.area)?' completed':''))})}function show(html){game.innerHTML=html;overlay.classList.remove('hidden')}function close(){overlay.classList.add('hidden');active=null}function nextIndex(id){return areas[id].questions.findIndex((_,i)=>answered[id+':'+i]===undefined)}function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function enter(id){if(!started){alert('Please enter your name and tap Start Adventure first.');return}active=id;const i=nextIndex(id),a=areas[id];if(i<0){show('<h2 id="dialogTitle">🎁 '+a.name+' complete!</h2><p>All treasures in this area have been collected.</p><button class="primary" id="back">Return to map</button>');$('back').onclick=close;return}const q=a.questions[i];show('<div class="bottom"><span class="areaTag">'+a.emoji+' '+a.name+'</span><button id="back" class="print">← Map</button></div><h2 id="dialogTitle">Treasure Challenge '+(i+1)+' of '+a.questions.length+'</h2><p class="small muted">5 points per correct answer • Your first answer counts</p><div class="question">'+escapeHTML(q.q)+'</div><div class="choices">'+q.a.map((s,k)=>'<button class="choice" data-option="'+k+'">'+String.fromCharCode(65+k)+'. '+escapeHTML(s)+'</button>').join('')+'</div><div id="feedback" class="feedback" aria-live="polite"></div><div class="bottom"><span class="muted">Score: '+score+' / 100</span><button class="primary hidden" id="continue">Continue →</button></div>');$('back').onclick=close;document.querySelectorAll('[data-option]').forEach(b=>b.onclick=()=>answer(id,i,Number(b.dataset.option)))}function answer(id,i,pick){const key=id+':'+i;if(answered[key]!==undefined)return;const q=areas[id].questions[i],correct=pick===q.correct;answered[key]=pick;if(correct)score+=5;document.querySelectorAll('[data-option]').forEach(b=>{b.disabled=true;const v=Number(b.dataset.option);if(v===q.correct)b.classList.add('correct');if(v===pick&&!correct)b.classList.add('wrong')});$('feedback').textContent=(correct?'✅ Correct! +5 points. ':'💡 Not quite. +0 points. ')+q.why;$('continue').classList.remove('hidden');$('continue').textContent=completed()===20?'See Final Result 🏆':done(id)?'Collect Treasure 🎁':'Next Question →';$('continue').onclick=()=>{if(completed()===20)results();else if(done(id)){show('<div class="results"><h2 id="dialogTitle">🎉 Treasure Unlocked!</h2><p>You finished the '+areas[id].name+' challenges.</p><p>Explore another area on the map!</p><button class="primary" id="back">Return to Map</button></div>');$('back').onclick=close}else enter(id)};update();if(completed()===20)setTimeout(()=>{},0)}function results(){const date=new Date().toLocaleDateString();show('<div class="results"><h2 id="dialogTitle">🏆 Hinoki Village Explorer Certificate</h2><p>Congratulations, <strong>'+escapeHTML(student)+'</strong>!</p><div class="scorebig">'+score+' / 100</div><p><strong>Final Grade: '+score+'%</strong></p><p>Correct answers: '+score/5+' of 20</p><p>Treasure areas completed: 6 of 6</p><p class="muted">Date: '+escapeHTML(date)+'</p><p class="small muted">Show this result to your teacher or save a screenshot for grading.</p><div class="bottom" style="justify-content:center"><button class="print" onclick="window.print()">🖨️ Print / Save as PDF</button><button class="primary" id="restart">Play Again</button></div></div>');$('restart').onclick=()=>{if(confirm('Restart? Your current score will be erased.')){answered={};score=0;started=false;student='';$('student').value='';$('welcome').textContent='Enter your name to begin.';update();close()}}}document.querySelectorAll('.spot').forEach(b=>b.onclick=()=>enter(b.dataset.area));$('start').onclick=()=>{const name=$('student').value.trim();if(!name){alert('Please enter your name.');$('student').focus();return}if(started&&completed()>0){alert('Adventure already started. Finish this game before starting another.');return}student=name;started=true;$('student').disabled=true;$('start').disabled=true;$('welcome').textContent='Good luck, '+student+'! Tap any treasure marker.'};update();
+const $ = id => document.getElementById(id);
+const overlay = $('overlay'), game = $('game');
+const total = Object.values(areas).reduce((n, area) => n + area.questions.length, 0);
+const maxScore = total * 5;
+const storageKey = 'hinoki-treasure-hunt-v1';
+let started = false, student = '', answered = {}, score = 0, returnFocus = null;
+const done = id => areas[id].questions.every((_, i) => answered[id + ':' + i] !== undefined);
+const completed = () => Object.keys(answered).length;
+const escapeHTML = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function save() {
+  try { localStorage.setItem(storageKey, JSON.stringify({student, answered})); }
+  catch { /* Play still works when browser storage is unavailable. */ }
+}
+function restore() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey));
+    if (!saved || typeof saved.student !== 'string' || !saved.student.trim()) return;
+    student = saved.student.trim().slice(0, 50);
+    started = true;
+    for (const [id, area] of Object.entries(areas)) {
+      area.questions.forEach((q, i) => {
+        const pick = saved.answered?.[id + ':' + i];
+        if (Number.isInteger(pick) && pick >= 0 && pick < q.a.length) {
+          answered[id + ':' + i] = pick;
+          if (pick === q.correct) score += 5;
+        }
+      });
+    }
+  } catch { /* Ignore invalid or unavailable saved data. */ }
+}
+function update() {
+  $('score').textContent = '⭐ ' + score + ' / ' + maxScore;
+  $('counter').textContent = completed() + ' / ' + total + ' questions completed';
+  $('fill').style.width = (completed() / total * 100) + '%';
+  document.querySelector('.progress').setAttribute('aria-valuemax', total);
+  document.querySelector('.progress').setAttribute('aria-valuenow', completed());
+  $('chests').textContent = '🎁 ' + Object.keys(areas).filter(done).length + ' / ' + Object.keys(areas).length + ' areas explored';
+  $('student').value = student;
+  $('student').disabled = started;
+  $('start').disabled = started;
+  $('reset').classList.toggle('hidden', !started);
+  $('viewResult').classList.toggle('hidden', completed() !== total);
+  $('welcome').textContent = started ? 'Good luck, ' + student + '! Tap any treasure marker.' : 'Enter your name to begin.';
+  document.querySelectorAll('.spot').forEach(b => {
+    const finished = done(b.dataset.area);
+    b.classList.toggle('done', finished);
+    b.setAttribute('aria-label', areas[b.dataset.area].name + (finished ? ' completed' : ', questions remaining'));
+  });
+}
+function show(html) {
+  if (overlay.classList.contains('hidden')) returnFocus = document.activeElement;
+  game.innerHTML = html;
+  overlay.classList.remove('hidden');
+  document.querySelector('main').inert = true;
+  document.querySelector('header').inert = true;
+  const title = $('dialogTitle');
+  title.tabIndex = -1;
+  title.focus();
+}
+function close() {
+  overlay.classList.add('hidden');
+  document.querySelector('main').inert = false;
+  document.querySelector('header').inert = false;
+  if (returnFocus && !returnFocus.disabled) returnFocus.focus();
+}
+function enter(id) {
+  if (!started) { $('welcome').textContent = 'Enter your name and tap Start Adventure first.'; $('student').focus(); return; }
+  const area = areas[id];
+  const i = area.questions.findIndex((_, i) => answered[id + ':' + i] === undefined);
+  if (i < 0) {
+    show('<h2 id="dialogTitle">🎁 ' + area.name + ' complete!</h2><p>All treasures in this area have been collected.</p><button class="primary" id="back">Return to map</button>');
+    $('back').onclick = close;
+    return;
+  }
+  const q = area.questions[i];
+  show('<div class="bottom"><span class="areaTag">' + area.emoji + ' ' + area.name + '</span><button id="back" class="print">← Map</button></div><h2 id="dialogTitle">Treasure Challenge ' + (i + 1) + ' of ' + area.questions.length + '</h2><p class="small muted">5 points per correct answer • Your first answer counts</p><div class="question">' + escapeHTML(q.q) + '</div><div class="choices">' + q.a.map((s, k) => '<button class="choice" data-option="' + k + '">' + String.fromCharCode(65 + k) + '. ' + escapeHTML(s) + '</button>').join('') + '</div><div id="feedback" class="feedback" aria-live="polite"></div><div class="bottom"><span class="muted" id="questionScore">Score: ' + score + ' / ' + maxScore + '</span><button class="primary hidden" id="continue">Continue →</button></div>');
+  $('back').onclick = close;
+  document.querySelectorAll('[data-option]').forEach(b => b.onclick = () => answer(id, i, Number(b.dataset.option)));
+}
+function answer(id, i, pick) {
+  const key = id + ':' + i;
+  if (answered[key] !== undefined) return;
+  const q = areas[id].questions[i], correct = pick === q.correct;
+  answered[key] = pick;
+  if (correct) score += 5;
+  save();
+  document.querySelectorAll('[data-option]').forEach(b => {
+    b.disabled = true;
+    const v = Number(b.dataset.option);
+    if (v === q.correct) b.classList.add('correct');
+    if (v === pick && !correct) b.classList.add('wrong');
+  });
+  $('feedback').textContent = (correct ? '✅ Correct! +5 points. ' : '💡 Not quite. +0 points. ') + q.why;
+  $('questionScore').textContent = 'Score: ' + score + ' / ' + maxScore;
+  $('continue').classList.remove('hidden');
+  $('continue').textContent = completed() === total ? 'See Final Result 🏆' : done(id) ? 'Collect Treasure 🎁' : 'Next Question →';
+  $('continue').onclick = () => {
+    if (completed() === total) results();
+    else if (done(id)) {
+      show('<div class="results"><h2 id="dialogTitle">🎉 Treasure Unlocked!</h2><p>You finished the ' + areas[id].name + ' challenges.</p><p>Explore another area on the map!</p><button class="primary" id="back">Return to Map</button></div>');
+      $('back').onclick = close;
+    } else enter(id);
+  };
+  update();
+  $('continue').focus();
+}
+function restart() {
+  if (!confirm('Start a new adventure? Your saved name and score will be erased.')) return;
+  answered = {}; score = 0; started = false; student = '';
+  try { localStorage.removeItem(storageKey); } catch {}
+  close(); update(); $('student').focus();
+}
+function results() {
+  show('<div class="results"><h2 id="dialogTitle">🏆 Hinoki Village Explorer Certificate</h2><p>Congratulations, <strong>' + escapeHTML(student) + '</strong>!</p><div class="scorebig">' + score + ' / ' + maxScore + '</div><p><strong>Final Grade: ' + Math.round(score / maxScore * 100) + '%</strong></p><p>Correct answers: ' + score / 5 + ' of ' + total + '</p><p>Treasure areas completed: ' + Object.keys(areas).filter(done).length + ' of ' + Object.keys(areas).length + '</p><p class="muted">Date: ' + escapeHTML(new Date().toLocaleDateString()) + '</p><p class="small muted">Show this result to your teacher or save a screenshot for grading.</p><div class="bottom" style="justify-content:center"><button class="print" id="printCertificate">🖨️ Print / Save as PDF</button><button class="primary" id="restart">Play Again</button><button class="print" id="certificateBack">Return to map</button></div></div>');
+  $('restart').onclick = restart;
+  $('printCertificate').onclick = () => window.print();
+  $('certificateBack').onclick = close;
+}
+$('start').onclick = () => {
+  const name = $('student').value.trim();
+  if (!name) { $('welcome').textContent = 'Please enter your name.'; $('student').focus(); return; }
+  if (started) return;
+  student = name; started = true; save(); update();
+  document.querySelector('.spot').focus();
+};
+$('student').addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); $('start').click(); } });
+$('reset').onclick = restart;
+$('viewResult').onclick = results;
+document.querySelectorAll('.spot').forEach(b => b.onclick = () => enter(b.dataset.area));
+overlay.addEventListener('keydown', event => {
+  if (event.key === 'Escape') { event.preventDefault(); close(); }
+  if (event.key !== 'Tab') return;
+  const controls = [...game.querySelectorAll('button:not(:disabled)')].filter(b => !b.classList.contains('hidden'));
+  const first = controls[0], last = controls[controls.length - 1];
+  if (event.shiftKey && (document.activeElement === first || document.activeElement === $('dialogTitle'))) {
+    event.preventDefault(); last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault(); first.focus();
+  }
+});
+restore(); update();
 </script></body></html>
