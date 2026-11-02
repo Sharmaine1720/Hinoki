@@ -46,6 +46,8 @@ English score = correct answers × 5. Surprise points are tracked separately. Fi
 
 Students may skip a surprise before playing for 0 points. Every area must have a completed or skipped surprise to finish. Each surprise can award points only once; outcomes are saved immediately when chosen, before animations finish, to prevent reloading or returning to the map from rerolling. Unfinished surprises can be reopened from their area. The new edition uses separate saved progress so old badge rounds do not affect point totals.
 
-## Pikmin finish trail
+## Pikmin map roads and neon interface
 
-A red, leaf-topped Pikmin moves one step for every fully completed area (questions plus played or skipped surprise). The trail supports any visit order and reaches the finish at six completed areas. The position is restored from saved progress. Walking and dice animations honor the browser’s reduced-motion preference.
+Pikmin walks directly on a glowing route over the roads in the supplied map. There is no separate trail panel. Complete areas in any order: every completed area advances one of six road stages; the finish flag is on the map. On phones the route, Pikmin, and finish remain over the image, while large area buttons appear underneath. Position is restored from saved progress. The map itself remains readable in its original colors.
+
+The interface uses dark navy, neon cyan, hot pink, and violet. Question screens include a decorative red, blue, and yellow Pikmin squad. Buttons have visible keyboard focus; right/wrong answers include explanatory text as well as color. Reduced-motion preferences disable walking and dice animations. No flashing effects are used.
