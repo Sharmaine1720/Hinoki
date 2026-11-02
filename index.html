@@ -4,49 +4,261 @@
 button:focus-visible,input:focus-visible{outline:3px solid #bd7900;outline-offset:3px}
 @media(max-width:650px){.mapbox{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:10px}.mapbox img{grid-column:1/-1}.spot{position:static;transform:none;min-width:0;max-width:none;min-height:64px;font-size:14px;padding:10px}.spot .emoji{font-size:24px}.intro input{min-width:0;width:100%}.pill{font-size:14px}.scorebig{font-size:48px}}
 @media print{body>*:not(#overlay){display:none!important}#restart,#certificateBack{display:none!important}.dialog{max-height:none;overflow:visible}}
-</style></head><body><header><div><h1>🗺️ Hinoki Village Treasure Hunt</h1><div class="subtitle">Explore • Answer • Collect Treasure!</div></div><div class="pill" id="score">⭐ 0 / 100</div></header><main class="wrap"><div class="intro"><label for="student"><strong>Explorer's name:</strong></label><input id="student" maxlength="50" placeholder="Type your name" autocomplete="off"><button class="primary" id="start">Start Adventure</button><span class="small muted" id="welcome">Enter your name to begin.</span></div><div class="bar"><strong id="counter">0 / 20 questions completed</strong><div class="progress" role="progressbar" aria-label="Questions completed" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0"><div id="fill" style="width:0%"></div></div><strong id="chests">🎁 0 / 6 areas explored</strong><button class="print hidden" id="viewResult">🏆 View certificate</button><button class="print hidden" id="reset">Start over</button></div><div class="mapbox"><img src="G6-Week%206%20Hinoki%20Village.pptx.png" alt="Illustrated Hinoki Village map with numbered buildings and streets"><button class="spot" style="left:22%;top:43%" data-area="bazaar"><span class="emoji">🛍️</span>Cultural Bazaar</button><button class="spot" style="left:42%;top:33%" data-area="gallery"><span class="emoji">🖼️</span>Gallery</button><button class="spot" style="left:66%;top:22%" data-area="time"><span class="emoji">⏳</span>Time Tunnel</button><button class="spot" style="left:68%;top:46%" data-area="snack"><span class="emoji">🧋</span>Food & Drinks</button><button class="spot" style="left:32%;top:61%" data-area="souvenir"><span class="emoji">🎁</span>Souvenirs</button><button class="spot" style="left:63%;top:78%" data-area="creative"><span class="emoji">🎨</span>Life & Creative</button></div><div class="mapnote">📍 Treasure markers are game locations placed approximately on the supplied map, not verified official boundaries. Tap any marker to play its questions.</div><div class="legend">🟢 Green = area completed · 🔵 Dark green = questions remaining · Answer each question once for points. Incorrect answers earn 0 points; practice feedback appears afterward.</div></main><div class="overlay hidden" id="overlay"><div class="dialog panel" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div id="game"></div></div></div><script>
-// TEACHER EDITING GUIDE: Each question has four answers. 'correct' is the zero-based index: 0=A, 1=B, 2=C, 3=D.
-// There are 20 questions total, each worth 5 points. Keep the total at 20 for a 100-point game.
-const areas={
- gallery:{name:'Gallery',emoji:'🖼️',questions:[
- {q:'Which sentence describes something you can do in a gallery?',a:['I can look at artwork.','I can drive a train.','I can swim in a pool.','I can cook in a kitchen.'],correct:0,why:'A gallery is a place where people can look at art.'},
- {q:'Complete the sentence: “This is the ____.”',a:['visit','gallery','beautiful','shopping'],correct:1,why:'Gallery is a place name and fits after “the”.'},
- {q:'Which invitation is grammatically correct?',a:['Let’s visiting the gallery!','Let’s visits the gallery!','Let’s visit the gallery!','Let’s visited the gallery!'],correct:2,why:'After “Let’s,” use the base form “visit.”'},
- {q:'You see paintings and photographs. Where are you most likely?',a:['Snack area','Parking lot','Train station','Gallery'],correct:3,why:'Artworks and photographs can be displayed in galleries.'}]},
- bazaar:{name:'Cultural & Creative Bazaar',emoji:'🛍️',questions:[
- {q:'What can visitors usually do at a cultural and creative bazaar?',a:['Buy handmade products.','Catch fish in a river.','Board an airplane.','Play basketball on a court.'],correct:0,why:'Bazaars often have creative products and crafts.'},
- {q:'Complete: “You can ____ here.”',a:['shopping','shop','shops','shopped'],correct:1,why:'Use the base verb after “can”.'},
- {q:'Which sentence describes a bazaar activity?',a:['I can sleep on the road.','I can fly above the roofs.','I can look for creative gifts.','I can climb a mountain.'],correct:2,why:'Creative gifts are a sensible thing to look for at a bazaar.'},
- {q:'Your friend wants to shop. What should you say?',a:['Let’s drink the bazaar.','Let’s sleep the bazaar.','Let’s paint the bazaar.','Let’s visit the bazaar!'],correct:3,why:'“Let’s visit the bazaar!” is a natural invitation.'}]},
- time:{name:'Time Tunnel',emoji:'⏳',questions:[
- {q:'Which word is most closely related to a time tunnel?',a:['History','Dessert','Shoes','Juice'],correct:0,why:'A time tunnel can help visitors learn about the past.'},
- {q:'Which sentence is correct?',a:['We can learning about history.','We can learn about history.','We can learns about history.','We can learned about history.'],correct:1,why:'Use “learn” after “can”.'},
- {q:'Complete: “Next, let’s ____ by the Time Tunnel!”',a:['stops','stopping','stop','stopped'],correct:2,why:'Use the base form “stop” after “let’s”.'}]},
- snack:{name:'Beverage & Snack Area',emoji:'🧋',questions:[
- {q:'What can you do at the Beverage & Snack Area?',a:['Read a train timetable.','Buy a painting frame.','Rent a bicycle helmet.','Enjoy snacks and drinks.'],correct:3,why:'Snacks and beverages are food and drinks.'},
- {q:'Which sentence is correct?',a:['I can eat yummy food here.','I can eating yummy food here.','I can eats yummy food here.','I can ate yummy food here.'],correct:0,why:'Use the base verb “eat” after “can”.'},
- {q:'Which word means something you can drink?',a:['Souvenir','Beverage','Gallery','Tunnel'],correct:1,why:'Beverage means a drink.'}]},
- souvenir:{name:'Souvenir Area',emoji:'🎁',questions:[
- {q:'What is a souvenir?',a:['A place to park a car','A kind of railway track','Something kept to remember a visit','A tool for measuring temperature'],correct:2,why:'A souvenir reminds you of a place or experience.'},
- {q:'Which sentence is the best description?',a:['You can swim across the shops.','You can ride a cloud here.','You can grow a mountain here.','You can buy gifts here.'],correct:3,why:'Souvenir shops sell gifts and keepsakes.'},
- {q:'Complete: “Finally, let’s ____ by the Souvenir Area!”',a:['swing','swinging','swings','swung'],correct:0,why:'“Let’s swing by” means “let’s make a short visit.”'}]},
- creative:{name:'Life & Creative Area',emoji:'🎨',questions:[
- {q:'Which activity best fits a creative area?',a:['Repairing a highway','Making an art project','Landing an airplane','Mining underground'],correct:1,why:'Making art is a creative activity.'},
- {q:'Choose the correct sentence.',a:['You can makes crafts here.','You can making crafts here.','You can make crafts here.','You can made crafts here.'],correct:2,why:'Use “make” after “can”.'},
- {q:'Which sentence is a good closing for a Hinoki Village presentation?',a:['Hinoki Village never open!','You should not visit here!','No one can enjoy this place!','Come and visit Hinoki Village!'],correct:3,why:'It is a friendly invitation to visitors.'}]}
+
+.choices{grid-template-columns:1fr}.wheelPointer{font-size:28px;color:#174d40;position:relative;z-index:1}.wheel{position:relative;margin:0 auto;width:210px;height:210px;border:7px solid #174d40;border-radius:50%;background:conic-gradient(#edac2d 0deg 120deg,#b8ddc2 120deg 240deg,#eec8a8 240deg);transition:transform 2.1s cubic-bezier(.12,.65,.15,1)}.wheel span{position:absolute;font-size:32px}.wheel span:nth-child(1){left:137px;top:49px}.wheel span:nth-child(2){left:82px;top:141px}.wheel span:nth-child(3){left:27px;top:49px}.houses{position:relative;height:130px;margin:20px auto;max-width:400px}.house{position:absolute;top:0;width:90px;height:115px;background:#fff5d9;border:2px solid #9b6b3d;border-radius:12px;transition:left .3s ease;font-size:13px;font-weight:700}.house span{font-size:42px}.house:disabled{opacity:1}.house:not(:disabled):hover{background:#f9df99}@media(prefers-reduced-motion:reduce){.wheel,.house,.progress>div{transition:none}}
+</style></head><body><header><div><h1>🗺️ Hinoki Village Treasure Hunt</h1><div class="subtitle">Explore • Answer • Collect Treasure!</div></div><div class="pill" id="score">⭐ 0 / 100</div></header><main class="wrap"><div class="intro"><label for="student"><strong>Explorer's name:</strong></label><input id="student" maxlength="50" placeholder="Type your name" autocomplete="off"><button class="primary" id="start">Start Adventure</button><span class="small muted" id="welcome">Enter your name to begin.</span></div><div class="bar"><strong id="counter">0 / 20 questions completed</strong><div class="progress" role="progressbar" aria-label="Questions completed" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0"><div id="fill" style="width:0%"></div></div><strong id="chests">🎁 0 / 6 areas explored</strong><button class="print hidden" id="viewResult">🏆 View certificate</button><button class="print hidden" id="reset">Start over</button></div><div class="mapbox"><img src="G6-Week%206%20Hinoki%20Village.pptx.png" alt="Illustrated Hinoki Village map with numbered buildings and streets"><button class="spot" style="left:22%;top:43%" data-area="bazaar"><span class="emoji">🛍️</span>Cultural Bazaar</button><button class="spot" style="left:42%;top:33%" data-area="gallery"><span class="emoji">🖼️</span>Gallery</button><button class="spot" style="left:66%;top:22%" data-area="time"><span class="emoji">⏳</span>Time Tunnel</button><button class="spot" style="left:68%;top:46%" data-area="snack"><span class="emoji">🧋</span>Food & Drinks</button><button class="spot" style="left:32%;top:61%" data-area="souvenir"><span class="emoji">🎁</span>Souvenirs</button><button class="spot" style="left:63%;top:78%" data-area="creative"><span class="emoji">🎨</span>Life & Creative</button></div><div class="mapnote">📍 Treasure markers are game locations placed approximately on the supplied map, not verified official boundaries. Tap any marker to play its questions.</div><p id="badges" class="mapnote" aria-live="polite"></p><div class="legend">🟢 Green = area completed · 🔵 Dark green = questions remaining · Answer each question once for points. Incorrect answers earn 0 points; practice feedback appears afterward.</div></main><div class="overlay hidden" id="overlay"><div class="dialog panel" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div id="game"></div></div></div><script>
+// Teacher guide: 20 questions, 3 choices each; correct is zero-based (0=A, 1=B, 2=C).
+const areas = {
+  "gallery": {
+    "name": "Gallery",
+    "emoji": "🖼️",
+    "questions": [
+      {
+        "q": "What can you do in a gallery?",
+        "a": [
+          "Look at art",
+          "Buy ice cream",
+          "Buy tea"
+        ],
+        "correct": 0,
+        "why": "You can look at art in a gallery."
+      },
+      {
+        "q": "You can ____ in the Reading Room.",
+        "a": [
+          "buy gifts",
+          "read books",
+          "eat pancakes"
+        ],
+        "correct": 1,
+        "why": "You can read books in the Reading Room."
+      },
+      {
+        "q": "What can you learn about at the Forest Museum?",
+        "a": [
+          "Forest history",
+          "Ice cream",
+          "Jewelry"
+        ],
+        "correct": 0,
+        "why": "You can learn about forest history at the Forest Museum."
+      },
+      {
+        "q": "You can ____ in a gallery.",
+        "a": [
+          "eat pancakes",
+          "look at pictures",
+          "buy shoes"
+        ],
+        "correct": 1,
+        "why": "You can look at pictures in a gallery."
+      }
+    ]
+  },
+  "bazaar": {
+    "name": "Cultural & Creative Bazaar",
+    "emoji": "🛍️",
+    "questions": [
+      {
+        "q": "What can you buy at SONG KUAI WOOD DESIGN?",
+        "a": [
+          "Wooden gifts",
+          "Drinks",
+          "Ice cream"
+        ],
+        "correct": 0,
+        "why": "You can buy wooden gifts at SONG KUAI WOOD DESIGN."
+      },
+      {
+        "q": "You can ____ at Tai-Jhuo-Jyu Gallery.",
+        "a": [
+          "eat rice",
+          "look at art",
+          "buy tea"
+        ],
+        "correct": 1,
+        "why": "You can look at art at Tai-Jhuo-Jyu Gallery."
+      },
+      {
+        "q": "What can you buy at the Cultural & Creative Bazaar?",
+        "a": [
+          "Ice cream",
+          "Wooden gifts",
+          "Drinks"
+        ],
+        "correct": 1,
+        "why": "You can buy wooden gifts at the Cultural & Creative Bazaar."
+      },
+      {
+        "q": "You can ____ at Qimu Wooden Articles Store.",
+        "a": [
+          "buy wooden gifts",
+          "eat pancakes",
+          "buy drinks"
+        ],
+        "correct": 0,
+        "why": "You can buy wooden gifts at Qimu Wooden Articles Store."
+      }
+    ]
+  },
+  "snack": {
+    "name": "Food & Drinks",
+    "emoji": "🧋",
+    "questions": [
+      {
+        "q": "You can ____ at FOR FUN / Bingooo Ice Cream.",
+        "a": [
+          "buy books",
+          "buy ice cream",
+          "buy jewelry"
+        ],
+        "correct": 1,
+        "why": "You can buy ice cream at FOR FUN / Bingooo Ice Cream."
+      },
+      {
+        "q": "What can you buy at Rainbow Pancakes?",
+        "a": [
+          "Tea",
+          "Pancakes",
+          "Gifts"
+        ],
+        "correct": 1,
+        "why": "You can buy pancakes at Rainbow Pancakes."
+      },
+      {
+        "q": "You can ____ at Imperial Tea House.",
+        "a": [
+          "drink tea",
+          "read books",
+          "buy shoes"
+        ],
+        "correct": 0,
+        "why": "You can drink tea at Imperial Tea House."
+      }
+    ]
+  },
+  "souvenir": {
+    "name": "Souvenir Area",
+    "emoji": "🎁",
+    "questions": [
+      {
+        "q": "What can you buy at Valentine Cookies House?",
+        "a": [
+          "Wooden gifts",
+          "Tea",
+          "Cookies"
+        ],
+        "correct": 2,
+        "why": "You can buy cookies at Valentine Cookies House."
+      },
+      {
+        "q": "You can ____ at Namiki Wooden Articles Store.",
+        "a": [
+          "eat ice cream",
+          "buy wooden gifts",
+          "drink coffee"
+        ],
+        "correct": 1,
+        "why": "You can buy wooden gifts at Namiki Wooden Articles Store."
+      },
+      {
+        "q": "What can you buy at the Seaweed Store?",
+        "a": [
+          "Seaweed",
+          "Books",
+          "Pancakes"
+        ],
+        "correct": 0,
+        "why": "You can buy seaweed at the Seaweed Store."
+      }
+    ]
+  },
+  "time": {
+    "name": "Time Tunnel",
+    "emoji": "⏳",
+    "questions": [
+      {
+        "q": "You can ____ at the Insect Museum.",
+        "a": [
+          "buy shoes",
+          "look at insects",
+          "eat pancakes"
+        ],
+        "correct": 1,
+        "why": "You can look at insects at the Insect Museum."
+      },
+      {
+        "q": "What can you try at Yukata Experience?",
+        "a": [
+          "Japanese clothes",
+          "Ice cream",
+          "Cookies"
+        ],
+        "correct": 0,
+        "why": "You can try Japanese clothes at Yukata Experience."
+      },
+      {
+        "q": "You can ____ at Chunhe Tea House.",
+        "a": [
+          "buy toys",
+          "buy shoes",
+          "drink tea"
+        ],
+        "correct": 2,
+        "why": "You can drink tea at Chunhe Tea House."
+      }
+    ]
+  },
+  "creative": {
+    "name": "Life & Creative Area",
+    "emoji": "🎨",
+    "questions": [
+      {
+        "q": "What can you buy at the beekeeping shop?",
+        "a": [
+          "Honey",
+          "Shoes",
+          "Books"
+        ],
+        "correct": 0,
+        "why": "You can buy honey at the beekeeping shop."
+      },
+      {
+        "q": "You can ____ at Brax a Sara Jewelry Art.",
+        "a": [
+          "buy snacks",
+          "buy jewelry",
+          "eat rice"
+        ],
+        "correct": 1,
+        "why": "You can buy jewelry at Brax a Sara Jewelry Art."
+      },
+      {
+        "q": "What can you see at Shin Tat Yuan Art Studio?",
+        "a": [
+          "Ice cream",
+          "Pancakes",
+          "Art"
+        ],
+        "correct": 2,
+        "why": "You can see art at Shin Tat Yuan Art Studio."
+      }
+    ]
+  }
 };
 const $ = id => document.getElementById(id);
 const overlay = $('overlay'), game = $('game');
 const total = Object.values(areas).reduce((n, area) => n + area.questions.length, 0);
 const maxScore = total * 5;
-const storageKey = 'hinoki-treasure-hunt-v1';
+const storageKey = 'hinoki-treasure-hunt-grade5-v2';
 let started = false, student = '', answered = {}, score = 0, returnFocus = null;
+let surprises = [], badgeNames = [], sceneVersion = 0;
 const done = id => areas[id].questions.every((_, i) => answered[id + ':' + i] !== undefined);
 const completed = () => Object.keys(answered).length;
 const escapeHTML = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 function save() {
-  try { localStorage.setItem(storageKey, JSON.stringify({student, answered})); }
+  try { localStorage.setItem(storageKey, JSON.stringify({student, answered, surprises, badgeNames})); }
   catch { /* Play still works when browser storage is unavailable. */ }
 }
 function restore() {
@@ -55,6 +267,8 @@ function restore() {
     if (!saved || typeof saved.student !== 'string' || !saved.student.trim()) return;
     student = saved.student.trim().slice(0, 50);
     started = true;
+    surprises = Array.isArray(saved.surprises) ? saved.surprises.filter(n => [5, 10, 15].includes(n)) : [];
+    badgeNames = Array.isArray(saved.badgeNames) ? saved.badgeNames.filter(n => ['Forest Friend', 'Art Explorer', 'Village Star', 'Treasure Finder'].includes(n)) : [];
     for (const [id, area] of Object.entries(areas)) {
       area.questions.forEach((q, i) => {
         const pick = saved.answered?.[id + ':' + i];
@@ -67,6 +281,7 @@ function restore() {
   } catch { /* Ignore invalid or unavailable saved data. */ }
 }
 function update() {
+  $('badges').textContent = badgeNames.length ? '🏅 Adventure badges: ' + badgeNames.join(' · ') : '✨ Surprise games along the way! Your English score is out of 100.';
   $('score').textContent = '⭐ ' + score + ' / ' + maxScore;
   $('counter').textContent = completed() + ' / ' + total + ' questions completed';
   $('fill').style.width = (completed() / total * 100) + '%';
@@ -86,6 +301,7 @@ function update() {
   });
 }
 function show(html) {
+  sceneVersion++;
   if (overlay.classList.contains('hidden')) returnFocus = document.activeElement;
   game.innerHTML = html;
   overlay.classList.remove('hidden');
@@ -96,6 +312,7 @@ function show(html) {
   title.focus();
 }
 function close() {
+  sceneVersion++;
   overlay.classList.add('hidden');
   document.querySelector('main').inert = false;
   document.querySelector('header').inert = false;
@@ -133,6 +350,7 @@ function answer(id, i, pick) {
   $('continue').classList.remove('hidden');
   $('continue').textContent = completed() === total ? 'See Final Result 🏆' : done(id) ? 'Collect Treasure 🎁' : 'Next Question →';
   $('continue').onclick = () => {
+    if ([5, 10, 15].includes(completed()) && !surprises.includes(completed())) { surprise(id); return; }
     if (completed() === total) results();
     else if (done(id)) {
       show('<div class="results"><h2 id="dialogTitle">🎉 Treasure Unlocked!</h2><p>You finished the ' + areas[id].name + ' challenges.</p><p>Explore another area on the map!</p><button class="primary" id="back">Return to Map</button></div>');
@@ -144,9 +362,74 @@ function answer(id, i, pick) {
 }
 function restart() {
   if (!confirm('Start a new adventure? Your saved name and score will be erased.')) return;
-  answered = {}; score = 0; started = false; student = '';
+  answered = {}; score = 0; started = false; student = ''; surprises = []; badgeNames = [];
   try { localStorage.removeItem(storageKey); } catch {}
   close(); update(); $('student').focus();
+}
+function surprise(id) {
+  const milestone = completed();
+  const finish = () => {
+    if (!surprises.includes(milestone)) surprises.push(milestone);
+    save(); update();
+    if (done(id)) close(); else enter(id);
+  };
+  const shell = (title, body) => '<div class="results"><h2 id="dialogTitle">' + title + '</h2><p>A surprise break! Your English score stays the same.</p>' + body + '<p id="surpriseFeedback" role="status"></p><button class="primary" id="surpriseNext">Skip / Back to questions →</button></div>';
+  const reward = name => {
+    if (!badgeNames.includes(name)) badgeNames.push(name);
+    if (!surprises.includes(milestone)) surprises.push(milestone);
+    save(); update();
+    $('surpriseFeedback').textContent = '🏅 You earned the ' + name + ' badge!';
+    $('surpriseNext').textContent = 'Back to questions →';
+    $('surpriseNext').focus();
+  };
+  if (milestone === 10) {
+    show(shell('🏡 Find the hidden treasure!', '<p>Watch the wooden houses shuffle. Then pick a house!</p><div class="houses">' + [1, 2, 3].map(n => '<button class="house" disabled aria-label="Wooden house ' + n + '"><span aria-hidden="true">🏡</span><br>House ' + n + '</button>').join('') + '</div>'));
+    $('surpriseNext').onclick = finish;
+    const scene = sceneVersion;
+    const houses = [...game.querySelectorAll('.house')];
+    let order = [0, 1, 2];
+    const slots = () => { const width = game.querySelector('.houses').clientWidth; return [0, (width - 90) / 2, width - 90]; };
+    const position = () => houses.forEach((h, i) => h.style.left = slots()[order[i]] + 'px');
+    position();
+    let moves = 0;
+    const shuffle = () => {
+      if (sceneVersion !== scene) return;
+      order = [order[1], order[2], order[0]]; position(); moves++;
+      if (moves < 5) { setTimeout(shuffle, 350); return; }
+      setTimeout(() => {
+        if (sceneVersion !== scene) return;
+        const treasure = Math.floor(Math.random() * 3);
+        $('surpriseFeedback').textContent = 'Pick a house. You can try again!';
+        houses.forEach((h, i) => {
+          h.disabled = false;
+          h.onclick = () => {
+            h.disabled = true;
+            if (i === treasure) {
+              h.innerHTML = '💎<br>Treasure!';
+              houses.forEach(b => b.disabled = true);
+              reward('Treasure Finder');
+            } else {
+              h.innerHTML = '🍃<br>Try another!';
+              $('surpriseFeedback').textContent = 'No treasure here. Pick another house!';
+            }
+          };
+        });
+      }, 350);
+    };
+    setTimeout(shuffle, 300);
+  } else {
+    show(shell('🎡 Spin the adventure wheel!', '<p>Spin to discover your adventure badge!</p><div class="wheelPointer" aria-hidden="true">▼</div><div class="wheel" aria-hidden="true"><span>🌲</span><span>🎨</span><span>⭐</span></div><p>🌲 Forest Friend · 🎨 Art Explorer · ⭐ Village Star</p><button class="primary" id="spin">Spin the wheel!</button><br><br>'));
+    $('surpriseNext').onclick = finish;
+    $('spin').onclick = () => {
+      $('spin').disabled = true;
+      const scene = sceneVersion;
+      const choice = Math.floor(Math.random() * 3);
+      game.querySelector('.wheel').style.transform = 'rotate(' + (1440 + [300, 180, 60][choice]) + 'deg)';
+      setTimeout(() => {
+        if (sceneVersion === scene) reward(['Forest Friend', 'Art Explorer', 'Village Star'][choice]);
+      }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 50 : 2200);
+    };
+  }
 }
 function results() {
   show('<div class="results"><h2 id="dialogTitle">🏆 Hinoki Village Explorer Certificate</h2><p>Congratulations, <strong>' + escapeHTML(student) + '</strong>!</p><div class="scorebig">' + score + ' / ' + maxScore + '</div><p><strong>Final Grade: ' + Math.round(score / maxScore * 100) + '%</strong></p><p>Correct answers: ' + score / 5 + ' of ' + total + '</p><p>Treasure areas completed: ' + Object.keys(areas).filter(done).length + ' of ' + Object.keys(areas).length + '</p><p class="muted">Date: ' + escapeHTML(new Date().toLocaleDateString()) + '</p><p class="small muted">Show this result to your teacher or save a screenshot for grading.</p><div class="bottom" style="justify-content:center"><button class="print" id="printCertificate">🖨️ Print / Save as PDF</button><button class="primary" id="restart">Play Again</button><button class="print" id="certificateBack">Return to map</button></div></div>');

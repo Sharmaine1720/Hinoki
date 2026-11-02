@@ -23,4 +23,10 @@ The repository is a static site. On GitHub, enable Pages under **Settings → Pa
 
 ## Edit questions
 
-Edit the `areas` object in `index.html`. Each question has text (`q`), four choices (`a`), a zero-based correct answer index (`correct`), and an explanation (`why`). The supplied set has 20 questions. Markers are approximate game locations, not verified official boundaries.
+Edit the `areas` object in `index.html`. Each question has text (`q`), three choices (`a`), a zero-based correct answer index (`correct`), and an explanation (`why`). The supplied set has 20 questions. Markers are approximate game locations, not verified official boundaries.
+
+## Grade 5 edition
+
+The 20 short questions focus on “You can …” and shops on the teacher’s map. Gallery and Bazaar have four questions each; the other four areas have three each. Each correct first answer earns 5 points, for a maximum of 100. Feedback models the full sentence.
+
+Surprise rounds appear after questions 5, 10, and 15: spin a badge wheel or find treasure under shuffled wooden houses. They are optional and award decorative badges only; they never add or remove English points. Progress for this question set is stored separately from the previous edition.
