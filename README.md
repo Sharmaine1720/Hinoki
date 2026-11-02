@@ -15,7 +15,7 @@ No build, dependencies, API keys, or backend are needed. GitHub Pages can deploy
 
 ## Map and controls
 
-Each of the six areas connects to the village road network. Selecting an area makes Pikmin follow a shortest road route from its current location to that area. Completed-area roads glow pink and checkpoints get checkmarks. Areas can be visited in any order. **Next area** suggests an unfinished destination. All questions and surprise games must be completed before the finish unlocks; Pikmin then walks to the on-map finish flag.
+Each of the six areas connects to the village road network. Selecting an area makes Pikmin follow a shortest road route from its current location to that area. Completed-area roads glow pink, map checkpoints get checkmarks, and every finished area button displays a visible **✓ Done** badge. The badge appears only after both its questions and surprise game are complete. Areas can be visited in any order. **Next area** suggests an unfinished destination. All questions and surprise games must be completed before the finish unlocks; Pikmin then walks to the on-map finish flag.
 
 Phones keep the route and character over the map with large area buttons underneath. Tab/Enter work throughout; Escape returns to the map. **Sound** is off initially and can be toggled on. Walking, flip, dice, and celebration animations honor reduced-motion preferences; there are no flashing effects. Current map location, question progress, memory progress, and surprise outcomes survive refreshes.
 
@@ -36,7 +36,7 @@ Each game awards points once. Leaving before finishing keeps the area unfinished
 
 ## Scoring
 
-English points = correct first answers × 5. Surprise points are separate. During play the combined **provisional score is capped at 99**, even if bonus points would raise it higher. A final score up to 100 is available only once all 20 questions and all six surprise games are done. The final combined score is floored at 0 and capped at 100; completing everything does not guarantee 100. No certificate: students see their final score, English accuracy, and surprise points. **View final score** reopens it.
+English points = (correct first answers × 5) − (wrong first answers × 5). Wrong answers deduct 5 points once; the explanation still shows the correct sentence. Stored answers are recalculated with this rule on reload. Net English points may be negative; the displayed combined game score is floored at 0, with penalties retained in the calculation. Surprise points are separate. During play the combined **provisional score is capped at 99**, even if bonus points would raise it higher. A final score up to 100 is available only once all 20 questions and all six surprise games are done. The final combined score is floored at 0 and capped at 100; completing everything does not guarantee 100. No certificate: students see their final score, English accuracy, and surprise points. **View final score** reopens it.
 
 ## Teacher edits
 
