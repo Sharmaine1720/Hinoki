@@ -1,53 +1,43 @@
 # Hinoki Village Treasure Hunt
 
-A browser game for English practice: explore six areas on the supplied village map, answer 20 questions, and earn up to 100 points. Each first answer is worth 5 points when correct. Explanations appear after every answer, followed by a printable explorer certificate.
+A static browser game for Grade 5 EFL students: 20 short questions, two choices each, six animated surprise games, and a final score out of 100. Questions model “You can …”.
 
-## Play
+## Run and share
 
-Open `index.html` in a modern browser, keeping the PNG image in the same folder. No build or dependencies are required.
-
-For reliable saved progress, serve the folder over HTTP:
+Open `index.html` beside the PNG in a modern browser, or serve this folder:
 
 ```sh
 cd /workspace/Hinoki
 python3 -m http.server 8000 --bind 0.0.0.0
 ```
 
-Enter your name, press **Start Adventure**, and select an area. Progress is saved in this browser when storage is available. **Start over** clears it for a new player. This is a shared-device classroom activity, so reset between students. Scores are local practice results, not secure submissions to a teacher.
+No build, dependencies, API keys, or backend are needed. GitHub Pages can deploy `main`, `/ (root)`. Progress is saved locally in this browser; use **Start over** between students on a shared device. Scores are practice results, not secure teacher submissions.
 
-On phones, area buttons appear below the map. Keyboard users can use Tab, Enter, and Escape; Escape returns from a challenge to the map. After finishing, **View certificate** reopens the result for printing or saving as PDF.
+## Map and controls
 
-## Share online
+Each of the six areas connects to the village road network. Selecting an area makes Pikmin follow a shortest road route from its current location to that area. Completed-area roads glow pink and checkpoints get checkmarks. Areas can be visited in any order. **Next area** suggests an unfinished destination. All questions and surprise games must be completed before the finish unlocks; Pikmin then walks to the on-map finish flag.
 
-The repository is a static site. On GitHub, enable Pages under **Settings → Pages**, choose **Deploy from a branch**, and select `main` and `/ (root)` after these files are committed and pushed. No API keys or backend are needed.
+Phones keep the route and character over the map with large area buttons underneath. Tab/Enter work throughout; Escape returns to the map. **Sound** is off initially and can be toggled on. Walking, flip, dice, and celebration animations honor reduced-motion preferences; there are no flashing effects. Current map location, question progress, memory progress, and surprise outcomes survive refreshes.
 
-## Edit questions
+## Surprise games
 
-Edit the `areas` object in `index.html`. Each question has text (`q`), two choices (`a`), a zero-based correct answer index (`correct`), and an explanation (`why`). The supplied set has 20 questions. Markers are approximate game locations, not verified official boundaries.
-
-## Grade 5 edition
-
-The 20 short questions focus on “You can …” and shops on the teacher’s map. Gallery and Bazaar have four questions each; the other four areas have three each. Each correct first answer earns 5 points, for a maximum of 100. Feedback models the full sentence.
-
-## Area surprise games
-
-Each area ends with a different surprise game:
-
-| Area | Game | Points |
+| Area | Activity | Points |
 |---|---|---|
-| Gallery | Remember and match two art cards | +5 match, −5 mismatch |
-| Bazaar | Choose one shuffled wooden house | +10 diamond, +5 coin, −5 leaf |
-| Food & Drinks | Spin the snack wheel | +10, +5, or −5 |
-| Souvenirs | Open one mystery gift box | +10 diamond, +5 coin, −5 leaf |
+| Gallery | 3×3 memory board: four pairs plus one treasure tile | All 9 tiles cleared with 0–2 mismatches: +10; 3–5: +5; 6+: −5 |
+| Bazaar | Watch the diamond house, then choose after a shuffle | +10 diamond, +5 coin, −5 leaf |
+| Food & Drinks | Spin the animated snack wheel | +10, +5, or −5 |
+| Souvenirs | Open a bouncing mystery gift | +10 diamond, +5 coin, −5 leaf |
 | Time Tunnel | Roll the dice | 6: +10; 4–5: +5; 1–3: −5 |
 | Life & Creative | Stop a moving paintbrush | Gold (40–60%): +10; green (20–80%): +5; outside: −5 |
 
-English score = correct answers × 5. Surprise points are tracked separately. Final game score = English score + total surprise points, capped at 100 and floored at 0. Clamping is applied to the combined total, not to individual rounds, so area order does not change the result. The certificate shows English accuracy and each surprise outcome separately.
+The memory board has a preview, then students find all four pairs and the single treasure card. Mismatched cards flip back; matched cards remain revealed. Progress and mismatch counts are retained when leaving or reloading. There is no timer. Treasure is a special single tile because nine tiles cannot form only pairs.
 
-Students may skip a surprise before playing for 0 points. Every area must have a completed or skipped surprise to finish. Each surprise can award points only once; outcomes are saved immediately when chosen, before animations finish, to prevent reloading or returning to the map from rerolling. Unfinished surprises can be reopened from their area. The new edition uses separate saved progress so old badge rounds do not affect point totals.
+Each game awards points once. Leaving before finishing keeps the area unfinished; returning resumes it. Final outcomes are saved before reveal animations so refreshes cannot reroll or duplicate points. The new edition has a separate saved-progress key from older versions.
 
-## Pikmin map roads and neon interface
+## Scoring
 
-Pikmin walks directly on a glowing route over the roads in the supplied map. There is no separate trail panel. Complete areas in any order: every completed area advances one of six road stages; the finish flag is on the map. On phones the route, Pikmin, and finish remain over the image, while large area buttons appear underneath. Position is restored from saved progress. The map itself remains readable in its original colors.
+English points = correct first answers × 5. Surprise points are separate. During play the combined **provisional score is capped at 99**, even if bonus points would raise it higher. A final score up to 100 is available only once all 20 questions and all six surprise games are done. The final combined score is floored at 0 and capped at 100; completing everything does not guarantee 100. No certificate: students see their final score, English accuracy, and surprise points. **View final score** reopens it.
 
-The interface uses dark navy, neon cyan, hot pink, and violet. Question screens include a decorative red, blue, and yellow Pikmin squad. Buttons have visible keyboard focus; right/wrong answers include explanatory text as well as color. Reduced-motion preferences disable walking and dice animations. No flashing effects are used.
+## Teacher edits
+
+Edit the `areas` object in `index.html`: `q` is the question, `a` contains two choices, `correct` is 0 or 1, and `why` models the full correct sentence. There are four questions each in Gallery and Bazaar and three in each other area. Map locations and connecting paths are approximate gameplay locations.

@@ -19,7 +19,10 @@ button:focus-visible,input:focus-visible{outline:3px solid #bd7900;outline-offse
 
 .mapStop[data-stop="0"] small{top:4px;left:auto;right:22px;transform:none}.neonFriends{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}.ambientFriend{position:absolute;width:160px;height:250px;opacity:.17}.ambientLeft{left:4%;bottom:5%;transform:rotate(-15deg);filter:hue-rotate(200deg) drop-shadow(0 0 20px #33d9ff)}.ambientRight{right:5%;top:8%;transform:rotate(12deg);filter:hue-rotate(65deg) drop-shadow(0 0 20px #ff81f0)}.dialog.panel{z-index:1}@media(max-width:650px){.ambientFriend{width:95px;height:150px}.ambientLeft{left:-20px;bottom:0}.ambientRight{right:-20px;top:0}}@media print{.neonFriends{display:none!important}}
 .mapRoads .roadTraveled{vector-effect:none;stroke-width:.65}
-</style></head><body data-edition="neon-map-v5"><header><div><h1>🗺️ Hinoki Village Treasure Hunt</h1><div class="subtitle">NEON VILLAGE QUEST · 20 questions · 6 surprises</div></div><div class="pill" id="score">⭐ 0 / 100</div></header><main class="wrap"><div class="intro"><label for="student"><strong>Explorer's name:</strong></label><input id="student" maxlength="50" placeholder="Type your name" autocomplete="off"><button class="primary" id="start">Start Adventure</button><span class="small muted" id="welcome">Enter your name to begin.</span></div><div class="bar"><strong id="counter">0 / 20 questions completed</strong><div class="progress" role="progressbar" aria-label="Questions completed" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0"><div id="fill" style="width:0%"></div></div><strong id="chests">🎁 0 / 6 areas explored</strong><button class="print hidden" id="viewResult">🏆 View certificate</button><button class="print hidden" id="reset">Start over</button></div><div class="mapHeading"><div><span class="eyebrow">NEON EXPLORERS / HINOKI VILLAGE</span><h2 id="journeyTitle">Follow the village roads</h2></div><span class="journeyCount" id="journeyCount">0 / 6 areas</span></div><p id="journeyStatus" role="status">Your Pikmin is ready! Finish an area to move along the map roads.</p><div class="mapbox journey"><div class="mapCanvas"><img src="G6-Week%206%20Hinoki%20Village.pptx.png" alt="Illustrated Hinoki Village map with numbered buildings and streets"><svg class="mapRoads" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path class="roadGlow" d="M44 87 L47 77 L48 57 L50 37 L51 18 L84 17 L82 37 L81 57 L80 77"/><path id="mapRoad" class="roadLine" d="M44 87 L47 77 L48 57 L50 37 L51 18 L84 17 L82 37 L81 57 L80 77"/><path id="roadTraveled" class="roadTraveled" d="M44 87 L47 77 L48 57 L50 37 L51 18 L84 17 L82 37 L81 57 L80 77"/></svg><span class="mapStop" data-stop="0" style="left:44%;top:87%"><span>🌱</span><small>START</small></span><span class="mapStop" data-stop="1" style="left:47%;top:77%"><span>1</span><small></small></span><span class="mapStop" data-stop="2" style="left:48%;top:57%"><span>2</span><small></small></span><span class="mapStop" data-stop="3" style="left:50%;top:37%"><span>3</span><small></small></span><span class="mapStop" data-stop="4" style="left:51%;top:18%"><span>4</span><small></small></span><span class="mapStop" data-stop="5" style="left:84%;top:17%"><span>5</span><small></small></span><span class="mapStop" data-stop="6" style="left:80%;top:77%"><span>🏁</span><small>FINISH</small></span><div id="walker" class="walker" style="left:44%;top:87%"><svg viewBox="0 0 90 140" class="pikmin" role="img" aria-label="Red Pikmin with a leaf on its head"><path d="M46 42 Q35 12 54 8" fill="none" stroke="#47873c" stroke-width="5"/><path d="M50 11 Q51 -1 78 3 Q73 26 50 11" fill="#8bc64b" stroke="#438131" stroke-width="2"/><ellipse cx="44" cy="80" rx="17" ry="25" fill="#e34b43"/><ellipse cx="43" cy="49" rx="23" ry="22" fill="#ed574a"/><ellipse cx="34" cy="43" rx="8" ry="10" fill="white"/><ellipse cx="53" cy="43" rx="8" ry="10" fill="white"/><circle cx="36" cy="44" r="3.5" fill="#26372d"/><circle cx="55" cy="44" r="3.5" fill="#26372d"/><path d="M44 52 L66 61 L44 61" fill="#d43b38"/><path d="M30 77 L13 88 M58 77 L73 67" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/><g class="feet"><path d="M37 101 L32 124 L19 126 M51 101 L57 123 L70 125" fill="none" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/></g></svg></div></div><button class="spot" style="left:22%;top:43%" data-area="bazaar"><span class="emoji">🛍️</span>Cultural Bazaar</button><button class="spot" style="left:42%;top:33%" data-area="gallery"><span class="emoji">🖼️</span>Gallery</button><button class="spot" style="left:66%;top:22%" data-area="time"><span class="emoji">⏳</span>Time Tunnel</button><button class="spot" style="left:68%;top:46%" data-area="snack"><span class="emoji">🧋</span>Food & Drinks</button><button class="spot" style="left:32%;top:61%" data-area="souvenir"><span class="emoji">🎁</span>Souvenirs</button><button class="spot" style="left:63%;top:78%" data-area="creative"><span class="emoji">🎨</span>Life & Creative</button></div><div class="mapnote">🌱 Complete areas in any order. Pikmin moves one stage along the glowing village roads each time. Reach 🏁 FINISH after all six areas! Game markers are approximate locations.</div><p id="badges" class="mapnote" aria-live="polite"></p><div class="legend">🟢 Green = area completed · 🔵 Dark green = questions remaining · Answer each question once for points. Correct answers earn 5 points. Each area has a surprise game that can add or subtract points. Final game score: 0–100.</div></main><div class="overlay hidden" id="overlay"><div class="neonFriends" aria-hidden="true"><div class="ambientFriend ambientLeft"><svg viewBox="0 0 90 140" class="pikmin" role="img" aria-label="Red Pikmin with a leaf on its head"><path d="M46 42 Q35 12 54 8" fill="none" stroke="#47873c" stroke-width="5"/><path d="M50 11 Q51 -1 78 3 Q73 26 50 11" fill="#8bc64b" stroke="#438131" stroke-width="2"/><ellipse cx="44" cy="80" rx="17" ry="25" fill="#e34b43"/><ellipse cx="43" cy="49" rx="23" ry="22" fill="#ed574a"/><ellipse cx="34" cy="43" rx="8" ry="10" fill="white"/><ellipse cx="53" cy="43" rx="8" ry="10" fill="white"/><circle cx="36" cy="44" r="3.5" fill="#26372d"/><circle cx="55" cy="44" r="3.5" fill="#26372d"/><path d="M44 52 L66 61 L44 61" fill="#d43b38"/><path d="M30 77 L13 88 M58 77 L73 67" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/><g class="feet"><path d="M37 101 L32 124 L19 126 M51 101 L57 123 L70 125" fill="none" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/></g></svg></div><div class="ambientFriend ambientRight"><svg viewBox="0 0 90 140" class="pikmin" role="img" aria-label="Red Pikmin with a leaf on its head"><path d="M46 42 Q35 12 54 8" fill="none" stroke="#47873c" stroke-width="5"/><path d="M50 11 Q51 -1 78 3 Q73 26 50 11" fill="#8bc64b" stroke="#438131" stroke-width="2"/><ellipse cx="44" cy="80" rx="17" ry="25" fill="#e34b43"/><ellipse cx="43" cy="49" rx="23" ry="22" fill="#ed574a"/><ellipse cx="34" cy="43" rx="8" ry="10" fill="white"/><ellipse cx="53" cy="43" rx="8" ry="10" fill="white"/><circle cx="36" cy="44" r="3.5" fill="#26372d"/><circle cx="55" cy="44" r="3.5" fill="#26372d"/><path d="M44 52 L66 61 L44 61" fill="#d43b38"/><path d="M30 77 L13 88 M58 77 L73 67" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/><g class="feet"><path d="M37 101 L32 124 L19 126 M51 101 L57 123 L70 125" fill="none" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/></g></svg></div></div><div class="dialog panel" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialogSquad" aria-hidden="true"><div class="squadFriend friendRed"><svg viewBox="0 0 90 140" class="pikmin" role="img" aria-label="Red Pikmin with a leaf on its head"><path d="M46 42 Q35 12 54 8" fill="none" stroke="#47873c" stroke-width="5"/><path d="M50 11 Q51 -1 78 3 Q73 26 50 11" fill="#8bc64b" stroke="#438131" stroke-width="2"/><ellipse cx="44" cy="80" rx="17" ry="25" fill="#e34b43"/><ellipse cx="43" cy="49" rx="23" ry="22" fill="#ed574a"/><ellipse cx="34" cy="43" rx="8" ry="10" fill="white"/><ellipse cx="53" cy="43" rx="8" ry="10" fill="white"/><circle cx="36" cy="44" r="3.5" fill="#26372d"/><circle cx="55" cy="44" r="3.5" fill="#26372d"/><path d="M44 52 L66 61 L44 61" fill="#d43b38"/><path d="M30 77 L13 88 M58 77 L73 67" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/><g class="feet"><path d="M37 101 L32 124 L19 126 M51 101 L57 123 L70 125" fill="none" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/></g></svg></div><div class="squadFriend friendBlue"><svg viewBox="0 0 90 140" class="pikmin" role="img" aria-label="Red Pikmin with a leaf on its head"><path d="M46 42 Q35 12 54 8" fill="none" stroke="#47873c" stroke-width="5"/><path d="M50 11 Q51 -1 78 3 Q73 26 50 11" fill="#8bc64b" stroke="#438131" stroke-width="2"/><ellipse cx="44" cy="80" rx="17" ry="25" fill="#e34b43"/><ellipse cx="43" cy="49" rx="23" ry="22" fill="#ed574a"/><ellipse cx="34" cy="43" rx="8" ry="10" fill="white"/><ellipse cx="53" cy="43" rx="8" ry="10" fill="white"/><circle cx="36" cy="44" r="3.5" fill="#26372d"/><circle cx="55" cy="44" r="3.5" fill="#26372d"/><path d="M44 52 L66 61 L44 61" fill="#d43b38"/><path d="M30 77 L13 88 M58 77 L73 67" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/><g class="feet"><path d="M37 101 L32 124 L19 126 M51 101 L57 123 L70 125" fill="none" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/></g></svg></div><div class="squadFriend friendYellow"><svg viewBox="0 0 90 140" class="pikmin" role="img" aria-label="Red Pikmin with a leaf on its head"><path d="M46 42 Q35 12 54 8" fill="none" stroke="#47873c" stroke-width="5"/><path d="M50 11 Q51 -1 78 3 Q73 26 50 11" fill="#8bc64b" stroke="#438131" stroke-width="2"/><ellipse cx="44" cy="80" rx="17" ry="25" fill="#e34b43"/><ellipse cx="43" cy="49" rx="23" ry="22" fill="#ed574a"/><ellipse cx="34" cy="43" rx="8" ry="10" fill="white"/><ellipse cx="53" cy="43" rx="8" ry="10" fill="white"/><circle cx="36" cy="44" r="3.5" fill="#26372d"/><circle cx="55" cy="44" r="3.5" fill="#26372d"/><path d="M44 52 L66 61 L44 61" fill="#d43b38"/><path d="M30 77 L13 88 M58 77 L73 67" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/><g class="feet"><path d="M37 101 L32 124 L19 126 M51 101 L57 123 L70 125" fill="none" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/></g></svg></div><span>PIKMIN EXPLORERS / LET’S PLAY!</span></div><div id="game"></div></div></div><script>
+
+.networkRoad{stroke:#0d8496;stroke-width:4;stroke-dasharray:5 5;filter:drop-shadow(0 0 2px #0ad3ea)}.networkRoad.visitedRoad{stroke:#c553e8;stroke-dasharray:none}.networkRoad.activeRoad{stroke:#ffff83;stroke-width:6;stroke-dasharray:4 4;animation:roadDash .5s linear infinite}.areaCheckpoint{position:absolute;transform:translate(-50%,-50%);z-index:2;border:2px solid #4cfbe6;border-radius:50%;background:#102c44;color:#a6f8f5;font-size:12px;width:23px;height:23px;text-align:center;line-height:19px}.areaCheckpoint.reached{background:#5c216f;color:white;border-color:#f5a2ff}.finishStop{z-index:3}.finishStop small{top:30px}.traveling .spot{pointer-events:none;opacity:.7}.walker{z-index:6}.celebrating{animation:happyHop .6s ease}.memoryCards{grid-template-columns:repeat(3,minmax(0,82px));gap:10px}.memoryCard{height:82px;font-size:32px;transition:background .2s,box-shadow .2s}.memoryCard.revealed{animation:cardFlip .25s ease}.memoryCard.matched{background:#164d52;border-color:#68ffcf;box-shadow:0 0 14px #4df2ad55}.memoryStats{font-size:13px;color:#aaf9e5;margin:10px 0 16px}.mystery:not(:disabled){animation:giftBob 2s ease-in-out infinite}.opening{animation:giftShake .3s ease-in-out 2}.prizeParticles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:7}.prizeParticles span{position:absolute;left:50%;top:45%;font-size:25px;animation:prizeBurst 1.4s ease-out forwards;--angle:calc(var(--i)*30deg)}.pointsPop{position:absolute;left:50%;top:40%;transform:translateX(-50%);padding:12px 20px;background:#101932;color:#8ffff0;border:2px solid #ff8af1;border-radius:16px;font-weight:950;z-index:8;animation:scorePop 1.5s ease forwards;pointer-events:none;white-space:nowrap}#surpriseBoard{position:relative}.scorebig{animation:scoreArrive .5s ease}.wheel{box-shadow:0 0 24px #73ffdc44}.diceFace{filter:drop-shadow(0 0 12px #ee8bff66)}@keyframes roadDash{to{stroke-dashoffset:-18}}@keyframes cardFlip{from{transform:rotateY(80deg)}to{transform:rotateY(0)}}@keyframes giftBob{50%{transform:translateY(-6px) rotate(2deg)}}@keyframes giftShake{25%{transform:rotate(-9deg)}75%{transform:rotate(9deg)}}@keyframes prizeBurst{to{transform:rotate(var(--angle)) translateY(-160px) rotate(calc(-1*var(--angle)));opacity:0}}@keyframes scorePop{0%{opacity:0;scale:.5}20%{opacity:1;scale:1.1}75%{opacity:1}100%{opacity:0;translate:0 -35px}}@keyframes happyHop{50%{translate:0 -12px}}@keyframes scoreArrive{from{transform:scale(.8);opacity:.2}to{transform:scale(1);opacity:1}}@media(max-width:650px){.networkRoad{stroke-width:2}.networkRoad.activeRoad{stroke-width:3}.areaCheckpoint{width:15px;height:15px;font-size:9px;line-height:12px;border-width:1px}.finishStop small{top:20px}.memoryCards{grid-template-columns:repeat(3,minmax(0,72px))}.memoryCard{height:72px;font-size:29px}}@media(prefers-reduced-motion:reduce){.networkRoad.activeRoad,.memoryCard.revealed,.mystery:not(:disabled),.opening,.scorebig,.celebrating{animation:none}.prizeParticles{display:none}.pointsPop{animation:none;display:none}}
+.guideSpeech{background:#3d2258;color:#efcfff;border:1px solid #a374c4;padding:10px 14px;border-radius:12px;font-size:14px;line-height:1.5}
+</style></head><body data-edition="neon-network-v6"><header><div><h1>🗺️ Hinoki Village Treasure Hunt</h1><div class="subtitle">NEON VILLAGE QUEST · 20 questions · 6 surprises</div></div><div class="pill" id="score">⭐ 0 / 100</div></header><main class="wrap"><div class="intro"><label for="student"><strong>Explorer's name:</strong></label><input id="student" maxlength="50" placeholder="Type your name" autocomplete="off"><button class="primary" id="start">Start Adventure</button><span class="small muted" id="welcome">Enter your name to begin.</span></div><div class="bar"><strong id="counter">0 / 20 questions completed</strong><div class="progress" role="progressbar" aria-label="Questions completed" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0"><div id="fill" style="width:0%"></div></div><strong id="chests">🎁 0 / 6 areas explored</strong><button class="print hidden" id="viewResult">🏆 View final score</button><button class="print hidden" id="nextArea">Next area →</button><button class="print" id="sound" aria-pressed="false">🔇 Sound off</button><button class="print hidden" id="reset">Start over</button></div><div class="mapHeading"><div><span class="eyebrow">NEON EXPLORERS / HINOKI VILLAGE</span><h2 id="journeyTitle">Follow the village roads</h2></div><span class="journeyCount" id="journeyCount">0 / 6 areas</span></div><p id="journeyStatus" role="status">Choose any area. Pikmin will follow the roads to it!</p><div class="mapbox journey"><div class="mapCanvas"><img src="G6-Week%206%20Hinoki%20Village.pptx.png" alt="Illustrated Hinoki Village map with numbered buildings and streets"><svg class="mapRoads" id="mapRoads" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg><span class="mapStop" style="left:44%;top:87%"><span>🌱</span><small>START</small></span><span class="mapStop finishStop" style="left:80%;top:86%"><span id="finishFlag">🔒</span><small>FINISH</small></span><span class="areaCheckpoint" data-road-area="gallery" style="left:42%;top:39%">◆</span><span class="areaCheckpoint" data-road-area="bazaar" style="left:22%;top:48%">◆</span><span class="areaCheckpoint" data-road-area="souvenir" style="left:32%;top:65%">◆</span><span class="areaCheckpoint" data-road-area="time" style="left:66%;top:26%">◆</span><span class="areaCheckpoint" data-road-area="snack" style="left:68%;top:50%">◆</span><span class="areaCheckpoint" data-road-area="creative" style="left:63%;top:83%">◆</span><div id="walker" class="walker" style="left:44%;top:87%"><svg viewBox="0 0 90 140" class="pikmin" role="img" aria-label="Red Pikmin with a leaf on its head"><path d="M46 42 Q35 12 54 8" fill="none" stroke="#47873c" stroke-width="5"/><path d="M50 11 Q51 -1 78 3 Q73 26 50 11" fill="#8bc64b" stroke="#438131" stroke-width="2"/><ellipse cx="44" cy="80" rx="17" ry="25" fill="#e34b43"/><ellipse cx="43" cy="49" rx="23" ry="22" fill="#ed574a"/><ellipse cx="34" cy="43" rx="8" ry="10" fill="white"/><ellipse cx="53" cy="43" rx="8" ry="10" fill="white"/><circle cx="36" cy="44" r="3.5" fill="#26372d"/><circle cx="55" cy="44" r="3.5" fill="#26372d"/><path d="M44 52 L66 61 L44 61" fill="#d43b38"/><path d="M30 77 L13 88 M58 77 L73 67" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/><g class="feet"><path d="M37 101 L32 124 L19 126 M51 101 L57 123 L70 125" fill="none" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/></g></svg></div></div><button class="spot" style="left:22%;top:43%" data-area="bazaar"><span class="emoji">🛍️</span>Cultural Bazaar</button><button class="spot" style="left:42%;top:33%" data-area="gallery"><span class="emoji">🖼️</span>Gallery</button><button class="spot" style="left:66%;top:22%" data-area="time"><span class="emoji">⏳</span>Time Tunnel</button><button class="spot" style="left:68%;top:46%" data-area="snack"><span class="emoji">🧋</span>Food & Drinks</button><button class="spot" style="left:32%;top:61%" data-area="souvenir"><span class="emoji">🎁</span>Souvenirs</button><button class="spot" style="left:63%;top:78%" data-area="creative"><span class="emoji">🎨</span>Life & Creative</button></div><div class="mapnote">🌱 Every area has a connecting road! Choose any area and follow Pikmin. Complete all 20 questions and six surprise games to unlock 🏁 FINISH and your final score. Game markers are approximate locations.</div><p id="badges" class="mapnote" aria-live="polite"></p><div class="legend">🟢 Green = area completed · 🔵 Dark green = questions remaining · Answer each question once for points. Correct answers earn 5 points. Each area has a surprise game that can add or subtract points. Provisional scores stay below 100 until all six areas are finished.</div></main><div class="overlay hidden" id="overlay"><div class="neonFriends" aria-hidden="true"><div class="ambientFriend ambientLeft"><svg viewBox="0 0 90 140" class="pikmin" role="img" aria-label="Red Pikmin with a leaf on its head"><path d="M46 42 Q35 12 54 8" fill="none" stroke="#47873c" stroke-width="5"/><path d="M50 11 Q51 -1 78 3 Q73 26 50 11" fill="#8bc64b" stroke="#438131" stroke-width="2"/><ellipse cx="44" cy="80" rx="17" ry="25" fill="#e34b43"/><ellipse cx="43" cy="49" rx="23" ry="22" fill="#ed574a"/><ellipse cx="34" cy="43" rx="8" ry="10" fill="white"/><ellipse cx="53" cy="43" rx="8" ry="10" fill="white"/><circle cx="36" cy="44" r="3.5" fill="#26372d"/><circle cx="55" cy="44" r="3.5" fill="#26372d"/><path d="M44 52 L66 61 L44 61" fill="#d43b38"/><path d="M30 77 L13 88 M58 77 L73 67" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/><g class="feet"><path d="M37 101 L32 124 L19 126 M51 101 L57 123 L70 125" fill="none" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/></g></svg></div><div class="ambientFriend ambientRight"><svg viewBox="0 0 90 140" class="pikmin" role="img" aria-label="Red Pikmin with a leaf on its head"><path d="M46 42 Q35 12 54 8" fill="none" stroke="#47873c" stroke-width="5"/><path d="M50 11 Q51 -1 78 3 Q73 26 50 11" fill="#8bc64b" stroke="#438131" stroke-width="2"/><ellipse cx="44" cy="80" rx="17" ry="25" fill="#e34b43"/><ellipse cx="43" cy="49" rx="23" ry="22" fill="#ed574a"/><ellipse cx="34" cy="43" rx="8" ry="10" fill="white"/><ellipse cx="53" cy="43" rx="8" ry="10" fill="white"/><circle cx="36" cy="44" r="3.5" fill="#26372d"/><circle cx="55" cy="44" r="3.5" fill="#26372d"/><path d="M44 52 L66 61 L44 61" fill="#d43b38"/><path d="M30 77 L13 88 M58 77 L73 67" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/><g class="feet"><path d="M37 101 L32 124 L19 126 M51 101 L57 123 L70 125" fill="none" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/></g></svg></div></div><div class="dialog panel" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialogSquad" aria-hidden="true"><div class="squadFriend friendRed"><svg viewBox="0 0 90 140" class="pikmin" role="img" aria-label="Red Pikmin with a leaf on its head"><path d="M46 42 Q35 12 54 8" fill="none" stroke="#47873c" stroke-width="5"/><path d="M50 11 Q51 -1 78 3 Q73 26 50 11" fill="#8bc64b" stroke="#438131" stroke-width="2"/><ellipse cx="44" cy="80" rx="17" ry="25" fill="#e34b43"/><ellipse cx="43" cy="49" rx="23" ry="22" fill="#ed574a"/><ellipse cx="34" cy="43" rx="8" ry="10" fill="white"/><ellipse cx="53" cy="43" rx="8" ry="10" fill="white"/><circle cx="36" cy="44" r="3.5" fill="#26372d"/><circle cx="55" cy="44" r="3.5" fill="#26372d"/><path d="M44 52 L66 61 L44 61" fill="#d43b38"/><path d="M30 77 L13 88 M58 77 L73 67" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/><g class="feet"><path d="M37 101 L32 124 L19 126 M51 101 L57 123 L70 125" fill="none" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/></g></svg></div><div class="squadFriend friendBlue"><svg viewBox="0 0 90 140" class="pikmin" role="img" aria-label="Red Pikmin with a leaf on its head"><path d="M46 42 Q35 12 54 8" fill="none" stroke="#47873c" stroke-width="5"/><path d="M50 11 Q51 -1 78 3 Q73 26 50 11" fill="#8bc64b" stroke="#438131" stroke-width="2"/><ellipse cx="44" cy="80" rx="17" ry="25" fill="#e34b43"/><ellipse cx="43" cy="49" rx="23" ry="22" fill="#ed574a"/><ellipse cx="34" cy="43" rx="8" ry="10" fill="white"/><ellipse cx="53" cy="43" rx="8" ry="10" fill="white"/><circle cx="36" cy="44" r="3.5" fill="#26372d"/><circle cx="55" cy="44" r="3.5" fill="#26372d"/><path d="M44 52 L66 61 L44 61" fill="#d43b38"/><path d="M30 77 L13 88 M58 77 L73 67" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/><g class="feet"><path d="M37 101 L32 124 L19 126 M51 101 L57 123 L70 125" fill="none" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/></g></svg></div><div class="squadFriend friendYellow"><svg viewBox="0 0 90 140" class="pikmin" role="img" aria-label="Red Pikmin with a leaf on its head"><path d="M46 42 Q35 12 54 8" fill="none" stroke="#47873c" stroke-width="5"/><path d="M50 11 Q51 -1 78 3 Q73 26 50 11" fill="#8bc64b" stroke="#438131" stroke-width="2"/><ellipse cx="44" cy="80" rx="17" ry="25" fill="#e34b43"/><ellipse cx="43" cy="49" rx="23" ry="22" fill="#ed574a"/><ellipse cx="34" cy="43" rx="8" ry="10" fill="white"/><ellipse cx="53" cy="43" rx="8" ry="10" fill="white"/><circle cx="36" cy="44" r="3.5" fill="#26372d"/><circle cx="55" cy="44" r="3.5" fill="#26372d"/><path d="M44 52 L66 61 L44 61" fill="#d43b38"/><path d="M30 77 L13 88 M58 77 L73 67" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/><g class="feet"><path d="M37 101 L32 124 L19 126 M51 101 L57 123 L70 125" fill="none" stroke="#d73e39" stroke-width="7" stroke-linecap="round"/></g></svg></div><span>PIKMIN EXPLORERS / LET’S PLAY!</span></div><div id="game"></div></div></div><script>
 // Teacher guide: 20 questions, 2 choices each; correct is zero-based (0=A, 1=B).
 const areas = {
   "gallery": {
@@ -243,16 +246,75 @@ const $ = id => document.getElementById(id);
 const overlay = $('overlay'), game = $('game');
 const total = Object.values(areas).reduce((n, area) => n + area.questions.length, 0);
 const maxScore = total * 5;
-const storageKey = 'hinoki-treasure-hunt-grade5-v4';
+const storageKey = 'hinoki-treasure-hunt-grade5-v6';
 let started = false, student = '', answered = {}, score = 0, returnFocus = null;
-let surpriseResults = {}, sceneVersion = 0, lastTrailCount = -1, roadProgress = 0, walkFrame = 0;
+let surpriseResults = {}, sceneVersion = 0, lastTrailCount = -1;
+let currentNode = 'start', travelVersion = 0, traveling = false, memoryState = null;
+let soundEnabled = false, audioContext = null;
+function playSound(kind='win') {
+  if(!soundEnabled)return;
+  try {
+    const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)return;
+    if(!audioContext)audioContext=new Audio();audioContext.resume();
+    const notes=kind==='tick'?[720]:kind==='lose'?[300,210]:[523,659,784];
+    notes.forEach((note,i)=>{const osc=audioContext.createOscillator(),gain=audioContext.createGain(),at=audioContext.currentTime+i*.09;osc.frequency.value=note;gain.gain.setValueAtTime(.06,at);gain.gain.exponentialRampToValueAtTime(.001,at+.12);osc.connect(gain);gain.connect(audioContext.destination);osc.start(at);osc.stop(at+.13);});
+  }catch{/* Silent play remains available when audio is unsupported. */}
+}
+const roadNodes = {start:[44,87],south:[47,77],middle:[48,57],north:[50,37],top:[51,18],eastTop:[84,17],eastNorth:[82,37],eastMiddle:[81,57],eastSouth:[80,77],finish:[80,86],gallery:[42,39],bazaarStreet:[22,57],bazaar:[22,48],souvenirStreet:[32,57],souvenir:[32,65],timeStreet:[66,18],time:[66,26],snackStreet:[68,57],snack:[68,50],creativeStreet:[63,77],creative:[63,83]};
+const roadEdges = [['start','south'],['south','middle'],['middle','north'],['north','top'],['top','timeStreet'],['timeStreet','eastTop'],['eastTop','eastNorth'],['eastNorth','eastMiddle'],['eastMiddle','eastSouth'],['eastSouth','finish'],['north','gallery'],['middle','souvenirStreet'],['souvenirStreet','bazaarStreet'],['bazaarStreet','bazaar'],['souvenirStreet','souvenir'],['timeStreet','time'],['eastMiddle','snackStreet'],['snackStreet','snack'],['south','creativeStreet'],['creativeStreet','creative'],['creativeStreet','eastSouth']];
+const edgeKey = (a,b) => [a,b].sort().join('-');
+function routeBetween(from,to) {
+  const dist = Object.fromEntries(Object.keys(roadNodes).map(id=>[id,Infinity])), previous = {}, pending = new Set(Object.keys(roadNodes)); dist[from]=0;
+  while(pending.size) {
+    const node = [...pending].sort((a,b)=>dist[a]-dist[b])[0]; pending.delete(node); if(node===to) break;
+    for(const [a,b] of roadEdges) {
+      const next = a===node?b:b===node?a:null; if(!next||!pending.has(next)) continue;
+      const cost = dist[node]+Math.hypot(roadNodes[node][0]-roadNodes[next][0],roadNodes[node][1]-roadNodes[next][1]);
+      if(cost<dist[next]) {dist[next]=cost;previous[next]=node;}
+    }
+  }
+  const path=[to];while(path[0]!==from)path.unshift(previous[path[0]]);return path;
+}
+function drawRoadNetwork() {
+  $('mapRoads').innerHTML=roadEdges.map(([a,b])=>'<path class="networkRoad" data-edge="'+edgeKey(a,b)+'" d="M'+roadNodes[a].join(' ')+' L'+roadNodes[b].join(' ')+'"/>').join('');
+}
+function placePikmin(x,y) { $('walker').style.left=x+'%';$('walker').style.top=y+'%'; }
+async function movePikmin(target) {
+  const path=routeBetween(currentNode,target), points=path.map(id=>roadNodes[id]);
+  const version=++travelVersion; traveling=true;document.querySelector('.mapbox').classList.add('traveling');
+  const svgPath=document.createElementNS('http://www.w3.org/2000/svg','path');
+  svgPath.setAttribute('d',points.map((p,i)=>(i?'L':'M')+p.join(' ')).join(' '));
+  const length=svgPath.getTotalLength();currentNode=target;save();
+  const walker=$('walker');walker.classList.add('walking');
+  document.querySelector('.mapCanvas').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});
+  const active=new Set(path.slice(1).map((id,i)=>edgeKey(path[i],id)));
+  document.querySelectorAll('[data-edge]').forEach(p=>p.classList.toggle('activeRoad',active.has(p.dataset.edge)));
+  await new Promise(resolve=>{
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches||!length){placePikmin(...roadNodes[target]);resolve();return;}
+    const start=performance.now();
+    function frame(now) {
+      if(version!==travelVersion){resolve();return;}
+      const t=Math.min(1,(now-start)/1200),p=svgPath.getPointAtLength(length*t);placePikmin(p.x,p.y);
+      if(t<1)requestAnimationFrame(frame);else resolve();
+    }
+    requestAnimationFrame(frame);
+  });
+  if(version!==travelVersion)return false;
+  walker.classList.remove('walking');traveling=false;document.querySelector('.mapbox').classList.remove('traveling');
+  document.querySelectorAll('.activeRoad').forEach(p=>p.classList.remove('activeRoad'));return true;
+}
+async function visitArea(id) {
+  if(!started){enter(id);return;}if(traveling)return;
+  $('journeyStatus').textContent='Pikmin is walking to '+areas[id].name+'…';
+  if(await movePikmin(id))enter(id);
+}
 const questionsDone = id => areas[id].questions.every((_, i) => answered[id + ':' + i] !== undefined);
 const adventureDone = () => Object.keys(areas).every(done);
 const bonusScore = () => Object.values(surpriseResults).reduce((sum, result) => sum + result.delta, 0);
-const finalScore = () => Math.max(0, Math.min(maxScore, score + bonusScore()));
+const finalScore = () => Math.max(0, Math.min(adventureDone() ? maxScore : 99, score + bonusScore()));
 const signed = n => (n > 0 ? '+' : '') + n;
 const surpriseTypes = {
-  gallery: {title:'🖼️ Art Memory Match', rule:'Remember the pictures. Pick two matching cards: +5. Different pictures: −5.', outcomes:[-5, 5]},
+  gallery: {title:'🖼️ Art Memory Match', rule:'Find 4 pairs and the treasure tile. 0–2 mistakes: +10. 3–5 mistakes: +5. 6 or more: −5.', outcomes:[-5, 5, 10]},
   bazaar: {title:'🏡 Shuffled Wooden Houses', rule:'Pick one house after the shuffle. A diamond: +10. A coin: +5. A leaf: −5.', outcomes:[10, 5, -5]},
   snack: {title:'🎡 Lucky Snack Wheel', rule:'Spin once! Win +10 or +5, or lose 5 points.', outcomes:[10, 5, -5]},
   souvenir: {title:'🎁 Mystery Gift Boxes', rule:'Pick one gift. A diamond: +10. A coin: +5. A leaf: −5.', outcomes:[10, 5, -5]},
@@ -264,7 +326,7 @@ const completed = () => Object.keys(answered).length;
 const escapeHTML = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 function save() {
-  try { localStorage.setItem(storageKey, JSON.stringify({student, answered, surpriseResults})); }
+  try { localStorage.setItem(storageKey, JSON.stringify({student, answered, surpriseResults, currentNode, memoryState})); }
   catch { /* Play still works when browser storage is unavailable. */ }
 }
 function restore() {
@@ -273,6 +335,11 @@ function restore() {
     if (!saved || typeof saved.student !== 'string' || !saved.student.trim()) return;
     student = saved.student.trim().slice(0, 50);
     started = true;
+    if(Object.hasOwn(roadNodes,saved.currentNode))currentNode=saved.currentNode;
+    const m=saved.memoryState;
+    if(m&&Array.isArray(m.pictures)&&m.pictures.length===9&&['🌲','🎨','🌼','🍄'].every(p=>m.pictures.filter(v=>v===p).length===2)&&m.pictures.filter(v=>v==='💎').length===1) {
+      memoryState={pictures:m.pictures,matched:Array.isArray(m.matched)?[...new Set(m.matched.filter(i=>Number.isInteger(i)&&i>=0&&i<9))]:[],mistakes:Number.isInteger(m.mistakes)&&m.mistakes>=0?m.mistakes:0,started:!!m.started};
+    }
     for (const id of Object.keys(areas)) {
       const result = saved.surpriseResults?.[id];
       if (result && [0, ...surpriseTypes[id].outcomes].includes(result.delta) && typeof result.message === 'string') {
@@ -292,43 +359,24 @@ function restore() {
 }
 function updateJourney() {
   const trailCount = Object.keys(areas).filter(done).length;
-  const walker = $('walker'), road = $('mapRoad'), traveled = $('roadTraveled');
-  const roadPoints = [[44,87],[47,77],[48,57],[50,37],[51,18],[84,17],[82,37],[81,57],[80,77]];
-  const distances = [0];
-  for (let i = 1; i < roadPoints.length; i++) distances.push(distances[i-1] + Math.hypot(roadPoints[i][0]-roadPoints[i-1][0],roadPoints[i][1]-roadPoints[i-1][1]));
-  const target = distances[[0,1,2,3,4,5,8][trailCount]], length = road.getTotalLength();
-  const place = value => {
-    const point = road.getPointAtLength(value);
-    walker.style.left = point.x + '%'; walker.style.top = point.y + '%';
-    traveled.style.strokeDasharray = length + ' ' + length;
-    traveled.style.strokeDashoffset = length - value;
-    roadProgress = value;
-  };
-  if (lastTrailCount !== trailCount) {
-    cancelAnimationFrame(walkFrame);
-    if (lastTrailCount >= 0 && trailCount > lastTrailCount && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const start = performance.now(), from = roadProgress;
-      walker.classList.remove('walking'); void walker.offsetWidth; walker.classList.add('walking');
-      document.querySelector('.mapCanvas').scrollIntoView({behavior:'smooth', block:'center'});
-      const step = time => {
-        const fraction = Math.min(1, (time - start) / 1100);
-        place(from + (target - from) * fraction);
-        if (fraction < 1) walkFrame = requestAnimationFrame(step);
-        else { place(target); walker.classList.remove('walking'); }
-      };
-      walkFrame = requestAnimationFrame(step);
-    } else place(target);
-    lastTrailCount = trailCount;
+  if(!traveling)placePikmin(...roadNodes[currentNode]);
+  const visitedEdges=new Set();
+  for(const id of Object.keys(areas).filter(done)) {
+    const route=routeBetween('start',id);route.slice(1).forEach((node,i)=>visitedEdges.add(edgeKey(route[i],node)));
   }
-  document.querySelectorAll('[data-stop]').forEach(stop => stop.classList.toggle('reached', Number(stop.dataset.stop) <= trailCount));
+  document.querySelectorAll('[data-edge]').forEach(p=>p.classList.toggle('visitedRoad',visitedEdges.has(p.dataset.edge)));
+  document.querySelectorAll('.areaCheckpoint').forEach(p=>{p.classList.toggle('reached',done(p.dataset.roadArea));p.textContent=done(p.dataset.roadArea)?'✓':'◆';});
+  $('finishFlag').textContent=adventureDone()?'🏁':'🔒';
+  if(lastTrailCount>=0&&trailCount>lastTrailCount){$('walker').classList.add('celebrating');setTimeout(()=>$('walker').classList.remove('celebrating'),700);}
+  lastTrailCount=trailCount;
   document.querySelector('.journey').classList.toggle('journeyFinished', trailCount === 6);
   $('journeyCount').textContent = trailCount + ' / 6 areas';
-  $('journeyStatus').textContent = trailCount === 6 ? '🏁 You did it! Your Pikmin reached the finish line. All six areas are complete!' : trailCount ? 'Your Pikmin has finished ' + trailCount + ' of 6 road stages. Choose any unfinished area to keep going!'  : 'Your Pikmin is ready! Finish an area to move along the map roads.';
+  $('journeyStatus').textContent = trailCount === 6 ? '🏁 You did it! Your Pikmin reached the finish line. All six areas are complete!' : trailCount ? trailCount + ' of 6 areas complete. Choose a place: Pikmin will walk there!'  : 'Choose any area. Pikmin will follow the roads to it!';
 
 }
 function update() {
   if (overlay.classList.contains('hidden')) updateJourney();
-  $('badges').textContent = '📚 English: ' + score + '/100 · ✨ Surprise points: ' + signed(bonusScore()) + ' · 🎮 Game total: ' + finalScore() + '/100. One surprise per area! Game total stays between 0 and 100.';
+  $('badges').textContent = '📚 English: ' + score + '/100 · ✨ Surprise points: ' + signed(bonusScore()) + ' · 🎮 ' + (adventureDone()?'Final score: ':'Provisional score: ') + finalScore() + '/100. ' + (adventureDone()?'All six areas complete!':'100 points unlock only after all 20 questions and all six surprise games.');
   $('score').textContent = '⭐ ' + finalScore() + ' / ' + maxScore;
   $('counter').textContent = completed() + ' / ' + total + ' questions completed';
   $('fill').style.width = (completed() / total * 100) + '%';
@@ -339,6 +387,9 @@ function update() {
   $('student').disabled = started;
   $('start').disabled = started;
   $('reset').classList.toggle('hidden', !started);
+  const nextId=Object.keys(areas).find(id=>!done(id));
+  $('nextArea').classList.toggle('hidden',!started||!nextId);
+  if(nextId)$('nextArea').textContent='Next: '+areas[nextId].name+' →';
   $('viewResult').classList.toggle('hidden', !adventureDone());
   $('welcome').textContent = started ? 'Good luck, ' + student + '! Tap any treasure marker.' : 'Enter your name to begin.';
   document.querySelectorAll('.spot').forEach(b => {
@@ -377,7 +428,7 @@ function enter(id) {
     return;
   }
   const q = area.questions[i];
-  show('<div class="bottom"><span class="areaTag">' + area.emoji + ' ' + area.name + '</span><button id="back" class="print">← Map</button></div><h2 id="dialogTitle">Treasure Challenge ' + (i + 1) + ' of ' + area.questions.length + '</h2><p class="small muted">5 points per correct answer • Your first answer counts</p><div class="question">' + escapeHTML(q.q) + '</div><div class="choices">' + q.a.map((s, k) => '<button class="choice" data-option="' + k + '">' + String.fromCharCode(65 + k) + '. ' + escapeHTML(s) + '</button>').join('') + '</div><div id="feedback" class="feedback" aria-live="polite"></div><div class="bottom"><span class="muted" id="questionScore">Score: ' + finalScore() + ' / ' + maxScore + '</span><button class="primary hidden" id="continue">Continue →</button></div>');
+  show('<div class="bottom"><span class="areaTag">' + area.emoji + ' ' + area.name + '</span><button id="back" class="print">← Map</button></div><h2 id="dialogTitle">Treasure Challenge ' + (i + 1) + ' of ' + area.questions.length + '</h2><p class="guideSpeech">🌱 Pikmin says: “Choose the best answer. You can do it!”</p><p class="small muted">5 points per correct answer • Your first answer counts</p><div class="question">' + escapeHTML(q.q) + '</div><div class="choices">' + q.a.map((s, k) => '<button class="choice" data-option="' + k + '">' + String.fromCharCode(65 + k) + '. ' + escapeHTML(s) + '</button>').join('') + '</div><div id="feedback" class="feedback" aria-live="polite"></div><div class="bottom"><span class="muted" id="questionScore">Score: ' + finalScore() + ' / ' + maxScore + '</span><button class="primary hidden" id="continue">Continue →</button></div>');
   $('back').onclick = close;
   document.querySelectorAll('[data-option]').forEach(b => b.onclick = () => answer(id, i, Number(b.dataset.option)));
 }
@@ -387,6 +438,7 @@ function answer(id, i, pick) {
   const q = areas[id].questions[i], correct = pick === q.correct;
   answered[key] = pick;
   if (correct) score += 5;
+  playSound(correct?'win':'lose');
   save();
   document.querySelectorAll('[data-option]').forEach(b => {
     b.disabled = true;
@@ -404,33 +456,35 @@ function answer(id, i, pick) {
 }
 function restart() {
   if (!confirm('Start a new adventure? Your saved name and score will be erased.')) return;
-  answered = {}; score = 0; started = false; student = ''; surpriseResults = {};
+  answered = {}; score = 0; started = false; student = ''; surpriseResults = {}; memoryState=null;currentNode='start';travelVersion++;traveling=false;document.querySelector('.mapbox').classList.remove('traveling');
   try { localStorage.removeItem(storageKey); } catch {}
   close(); update(); $('student').focus();
 }
 function surprise(id) {
   if (!questionsDone(id)) { enter(id); return; }
   const config = surpriseTypes[id];
-  const finish = () => {
-    if (!Object.hasOwn(surpriseResults, id)) {
-      surpriseResults[id] = {delta:0, message:'Skipped: 0 points.'}; save(); update();
-    }
+  const finish = async () => {
     close();
-    if (adventureDone()) {
-      const scene = sceneVersion;
-      setTimeout(() => { if (sceneVersion === scene) results(); }, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1300);
-    }
+    if(adventureDone()) {if(await movePikmin('finish'))results();}
   };
-  show('<div class="results"><span class="areaTag">' + areas[id].name + '</span><h2 id="dialogTitle">' + config.title + '</h2><p>' + config.rule + '</p><p class="small muted">One turn per area. Your English score stays separate. Game total: 0–100.</p><div id="surpriseBoard"></div><p id="surpriseFeedback" class="feedback" role="status"></p><button class="primary" id="surpriseNext">Skip surprise (0 points) →</button></div>');
+  show('<div class="results"><span class="areaTag">' + areas[id].name + '</span><h2 id="dialogTitle">' + config.title + '</h2><p>' + config.rule + '</p><p class="small muted">One turn per area. Your English score stays separate. 100 unlocks after all six areas.</p><div id="surpriseBoard"></div><p id="surpriseFeedback" class="feedback" role="status"></p><button class="primary" id="surpriseNext">Return to map / Play later →</button></div>');
   const scene = sceneVersion;
   const board = $('surpriseBoard');
   $('surpriseNext').onclick = finish;
+  const celebrateSurprise = delta => {
+    const particles=document.createElement('div');particles.className='prizeParticles';particles.setAttribute('aria-hidden','true');
+    particles.innerHTML=Array.from({length:12},(_,i)=>'<span style="--i:'+i+'">'+(delta>0?'🪙':'🍃')+'</span>').join('');board.append(particles);
+    const pop=document.createElement('div');pop.className='pointsPop';pop.textContent=signed(delta)+' POINTS';board.append(pop);
+    setTimeout(()=>{particles.remove();pop.remove();},1600);
+  };
   const renderResult = () => {
     const result = surpriseResults[id];
     $('surpriseFeedback').textContent = result.message + ' Surprise points: ' + signed(result.delta) + '. Game total: ' + finalScore() + '/100.';
     $('surpriseNext').disabled = false;
     $('surpriseNext').textContent = adventureDone() ? 'See final result 🏆' : 'Collect treasure / Return to map →';
     $('surpriseNext').focus();
+    celebrateSurprise(result.delta);
+    playSound(result.delta>0?'win':'lose');
   };
   // Save on selection, before animation. Leaving or reloading cannot reroll an outcome.
   const settle = (delta, message, delay = 0, reveal = () => {}) => {
@@ -457,6 +511,7 @@ function surprise(id) {
     board.innerHTML = '<div class="wheelPointer" aria-hidden="true">▼</div><div class="wheel" aria-hidden="true"><span>+10</span><span>+5</span><span>−5</span></div><p><button class="primary" id="spin">Spin the wheel!</button></p>';
     $('spin').onclick = () => {
       const pick = Math.floor(Math.random() * 3), delta = config.outcomes[pick];
+      for(let i=0;i<12;i++)setTimeout(()=>{if(sceneVersion===scene)playSound('tick');},i*130+i*i*3);
       board.querySelector('.wheel').style.transform = 'rotate(' + (1440 + [300, 180, 60][pick]) + 'deg)';
       settle(delta, delta > 0 ? 'Lucky snack!' : 'Oops! You dropped your snack.', reduced ? 0 : 2200);
     };
@@ -464,9 +519,11 @@ function surprise(id) {
     const houses = id === 'bazaar';
     board.innerHTML = '<p id="pickHint">' + (houses ? 'Watch the houses shuffle…' : 'Which gift will you open?') + '</p><div class="' + (houses ? 'houses' : 'surpriseChoices') + '">' + [1,2,3].map(n => '<button class="' + (houses ? 'house' : 'mystery') + '" data-pick="' + n + '" ' + (houses ? 'disabled' : '') + ' aria-label="' + (houses ? 'Wooden house ' : 'Gift box ') + n + '"><span aria-hidden="true">' + (houses ? '🏡' : '🎁') + '</span><br>' + n + '</button>').join('') + '</div>';
     const buttons = [...board.querySelectorAll('[data-pick]')], prizes = shuffle([10,5,-5]);
+    if(houses){buttons[prizes.indexOf(10)].querySelector('span').textContent='💎';$('pickHint').textContent='Watch the diamond house!';}
     buttons.forEach((button, i) => button.onclick = () => {
       const delta = prizes[i];
-      settle(delta, delta === 10 ? 'You found a diamond!' : delta === 5 ? 'You found a golden coin!' : 'A windy leaf blew some points away.', 0, () => {
+      button.classList.add('opening');
+      settle(delta, delta === 10 ? 'You found a diamond!' : delta === 5 ? 'You found a golden coin!' : 'A windy leaf blew some points away.', reduced ? 0 : 650, () => {
         buttons.forEach((b,j) => { b.innerHTML = (prizes[j] === 10 ? '💎' : prizes[j] === 5 ? '🪙' : '🍃') + '<br>' + signed(prizes[j]); });
         button.classList.add('picked');
       });
@@ -484,23 +541,34 @@ function surprise(id) {
           $('pickHint').textContent = 'Choose ONE house!';
         }
       };
-      move();
+      setTimeout(()=>{if(sceneVersion!==scene)return;buttons.forEach(b=>b.querySelector('span').textContent='🏡');move();},reduced?0:1200);
     }
   } else if (id === 'gallery') {
-    const pictures = shuffle(['🌲','🌲','🎨','🎨']);
-    board.innerHTML = '<p id="memoryHint">Remember the pictures, then press Hide cards.</p><div class="memoryCards">' + pictures.map((p,i) => '<button class="memoryCard" data-card="' + i + '" disabled aria-label="Card ' + (i+1) + ': ' + p + '">' + p + '</button>').join('') + '</div><p><button class="primary" id="hideCards">Hide cards / Ready!</button></p>';
-    const cards = [...board.querySelectorAll('[data-card]')];
-    $('hideCards').onclick = () => {
-      $('hideCards').disabled = true;
-      cards.forEach((c,i) => { c.disabled = false; c.textContent = '?'; c.setAttribute('aria-label', 'Face-down card ' + (i+1)); });
-      $('memoryHint').textContent = 'Pick two cards with the same picture.';
-      let first = null;
-      cards.forEach((card,i) => card.onclick = () => {
-        card.textContent = pictures[i]; card.disabled = true;
-        if (first === null) { first = i; return; }
-        settle(pictures[first] === pictures[i] ? 5 : -5, pictures[first] === pictures[i] ? 'A perfect picture pair!' : 'Different pictures. Better luck next time!', 0, () => cards.forEach((c,j) => c.textContent = pictures[j]));
-      });
+    if(!memoryState)memoryState={pictures:shuffle(['🌲','🌲','🎨','🎨','🌼','🌼','🍄','🍄','💎']),matched:[],mistakes:0,started:false};
+    const state=memoryState,pictures=state.pictures;
+    board.innerHTML='<p id="memoryHint">Remember the 9 tiles. Find four pairs and one treasure!</p><div class="memoryStats" id="memoryStats"></div><div class="memoryCards">'+pictures.map((p,i)=>'<button class="memoryCard" data-card="'+i+'" aria-label="Card '+(i+1)+'"></button>').join('')+'</div><p><button class="primary" id="hideCards">Hide cards / Ready!</button></p>';
+    const cards=[...board.querySelectorAll('[data-card]')];let first=null,busy=false;
+    const stats=()=>{$('memoryStats').textContent='Pairs: '+state.matched.filter(i=>pictures[i]!=='💎').length/2+'/4 · Treasure: '+(state.matched.some(i=>pictures[i]==='💎')?'found':'hidden')+' · Mistakes: '+state.mistakes;};
+    const renderCards=()=>{
+      cards.forEach((c,i)=>{const visible=!state.started||state.matched.includes(i)||first===i;c.textContent=visible?pictures[i]:'?';c.disabled=!state.started||state.matched.includes(i)||first===i||busy;c.classList.toggle('matched',state.matched.includes(i));c.classList.toggle('revealed',visible);c.setAttribute('aria-label','Card '+(i+1)+(visible?': '+pictures[i]:', face down'));});stats();
+      $('hideCards').classList.toggle('hidden',state.started);
     };
+    const finishMemory=()=>{
+      if(state.matched.length!==9)return;
+      settle(state.mistakes<=2?10:state.mistakes<=5?5:-5,'All four pairs and the treasure found! '+state.mistakes+' mistakes.');
+    };
+    $('hideCards').onclick=()=>{state.started=true;save();renderCards();$('memoryHint').textContent='Find all four pairs and the special treasure tile!';cards.find(c=>!c.disabled)?.focus();};
+    cards.forEach((card,i)=>card.onclick=()=>{
+      if(busy||state.matched.includes(i)||first===i)return;
+      if(pictures[i]==='💎'){state.matched.push(i);save();renderCards();finishMemory();return;}
+      if(first===null){first=i;renderCards();return;}
+      if(pictures[first]===pictures[i]){state.matched.push(first,i);first=null;save();renderCards();finishMemory();}
+      else {
+        state.mistakes++;busy=true;card.textContent=pictures[i];card.classList.add('revealed');cards.forEach(c=>c.disabled=true);stats();save();
+        setTimeout(()=>{if(sceneVersion!==scene)return;first=null;busy=false;renderCards();},reduced?60:850);
+      }
+    });
+    renderCards();finishMemory();save();
   } else if (id === 'time') {
     board.innerHTML = '<div class="diceFace" id="dice" aria-hidden="true">🎲</div><p><button class="primary" id="roll">Roll the time dice!</button></p>';
     $('roll').onclick = () => {
@@ -533,10 +601,9 @@ function surprise(id) {
   }
 }
 function results() {
-  show('<div class="results finishResults"><div class="finishBanner">🏁 FINISH LINE REACHED!</div><h2 id="dialogTitle">🏆 Hinoki Village Explorer Certificate</h2><p>Congratulations, <strong>' + escapeHTML(student) + '</strong>!</p><div class="scorebig">' + finalScore() + ' / ' + maxScore + '</div><p><strong>Final game score (including surprises)</strong></p><p>English score: ' + score + ' / 100 · Correct answers: ' + score / 5 + ' of ' + total + '</p><p>Surprise points: ' + signed(bonusScore()) + ' (game total limited to 0–100)</p><ul class="scoreHistory">' + Object.entries(surpriseResults).map(([id,r]) => '<li>' + areas[id].name + ': ' + signed(r.delta) + ' — ' + escapeHTML(r.message) + '</li>').join('') + '</ul><p>Treasure areas completed: ' + Object.keys(areas).filter(done).length + ' of ' + Object.keys(areas).length + '</p><p class="muted">Date: ' + escapeHTML(new Date().toLocaleDateString()) + '</p><p class="small muted">Show this result to your teacher or save a screenshot for grading.</p><div class="bottom" style="justify-content:center"><button class="print" id="printCertificate">🖨️ Print / Save as PDF</button><button class="primary" id="restart">Play Again</button><button class="print" id="certificateBack">Return to map</button></div></div>');
-  $('restart').onclick = restart;
-  $('printCertificate').onclick = () => window.print();
-  $('certificateBack').onclick = close;
+  if(!adventureDone()){close();return;}
+  show('<div class="results finishResults"><div class="finishBanner">🏁 ALL SIX AREAS COMPLETE!</div><h2 id="dialogTitle">Your final score</h2><p>Great exploring, <strong>'+escapeHTML(student)+'</strong>!</p><div class="scorebig">'+finalScore()+' / 100</div><p>📚 English: '+score+'/100 · Correct answers: '+score/5+'/20</p><p>✨ Surprise points: '+signed(bonusScore())+'</p><p>🎁 6 / 6 areas completed</p><p class="muted">English points + surprise points, limited to 0–100.</p><div class="bottom" style="justify-content:center"><button class="primary" id="restart">Play Again</button><button class="print" id="scoreBack">Return to map</button></div></div>');
+  $('restart').onclick=restart;$('scoreBack').onclick=close;
 }
 $('start').onclick = () => {
   const name = $('student').value.trim();
@@ -547,8 +614,10 @@ $('start').onclick = () => {
 };
 $('student').addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); $('start').click(); } });
 $('reset').onclick = restart;
+$('nextArea').onclick=()=>{const id=Object.keys(areas).find(id=>!done(id));if(id)visitArea(id);};
+$('sound').onclick=()=>{soundEnabled=!soundEnabled;$('sound').textContent=soundEnabled?'🔊 Sound on':'🔇 Sound off';$('sound').setAttribute('aria-pressed',String(soundEnabled));if(soundEnabled)playSound('win');};
 $('viewResult').onclick = results;
-document.querySelectorAll('.spot').forEach(b => b.onclick = () => enter(b.dataset.area));
+document.querySelectorAll('.spot').forEach(b => b.onclick = () => visitArea(b.dataset.area));
 overlay.addEventListener('keydown', event => {
   if (event.key === 'Escape') { event.preventDefault(); close(); }
   if (event.key !== 'Tab') return;
@@ -560,5 +629,5 @@ overlay.addEventListener('keydown', event => {
     event.preventDefault(); first.focus();
   }
 });
-restore(); update();
+drawRoadNetwork(); restore(); update();
 </script></body></html>
